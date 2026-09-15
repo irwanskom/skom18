@@ -66,15 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = data.get('message') || '';
 
       const text =
-        `Assalamu'alaikum, saya ingin konsultasi sertifikasi halal.%0A` +
-        `Nama: ${name}%0A` +
-        `Perusahaan: ${company}%0A` +
-        `No. HP: ${phone}%0A` +
-        `Layanan: ${service}%0A` +
+        `Assalamu'alaikum, saya ingin konsultasi sertifikasi halal.\n` +
+        `Nama: ${name}\n` +
+        `Perusahaan: ${company}\n` +
+        `No. HP: ${phone}\n` +
+        `Layanan: ${service}\n` +
         `Pesan: ${message}`;
 
-      const waNumber = '6281234567890';
-      window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
+      const waNumber = '6281343640048';
+      window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
       form.reset();
     });
   }

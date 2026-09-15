@@ -391,27 +391,23 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
 /* ---------------- Process ---------------- */
 .process-wrap { position: relative; }
 .process-steps {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 34px 50px;
   position: relative;
 }
-.process-steps::before {
-  content: ""; position: absolute; top: 34px; left: 8%; right: 8%; height: 1px;
-  background: repeating-linear-gradient(90deg, rgba(212,175,55,0.5) 0 10px, transparent 10px 20px);
-}
-.process-step { position: relative; text-align: center; padding: 0 10px; }
+.process-step { position: relative; text-align: left; display: flex; gap: 20px; align-items: flex-start; }
 .process-num {
-  width: 68px; height: 68px; margin: 0 auto 22px; border-radius: 50%;
+  flex: none; width: 54px; height: 54px; border-radius: 50%;
   background: var(--grad-gold); color: var(--green-950);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700;
+  font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 700;
   box-shadow: var(--shadow-gold); position: relative; z-index: 2;
 }
-.process-step h4 { color: var(--cream); font-size: 18px; }
-.process-step p { color: var(--cream-dim); font-size: 13.8px; }
+.process-step h4 { color: var(--cream); font-size: 17.5px; margin-bottom: 6px; }
+.process-step p { color: var(--cream-dim); font-size: 13.8px; margin: 0; }
 
 /* ---------------- Industries ---------------- */
 .industries-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
 }
 .industry-chip {
   background: #fff; border: 1px solid rgba(11,46,34,0.08); border-radius: 14px;
@@ -443,22 +439,23 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
 }
 .stat-box span { font-size: 13px; color: var(--cream-dim); letter-spacing: .03em; }
 
-/* ---------------- Testimonials ---------------- */
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.testi-card {
-  background: #fff; border-radius: var(--radius); padding: 34px;
-  border: 1px solid rgba(11,46,34,0.08);
-  box-shadow: 0 2px 0 rgba(212,175,55,0.4) inset;
+/* ---------------- Regulasi (produk wajib halal) ---------------- */
+.reg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.reg-chip {
+  background: #fff; border: 1px solid rgba(11,46,34,0.08); border-radius: 14px;
+  padding: 28px 18px; text-align: center; transition: .25s ease;
 }
-.testi-stars { color: var(--gold-500); font-size: 14px; margin-bottom: 16px; letter-spacing: 3px; }
-.testi-card p { color: #43524a; font-size: 15px; font-style: italic; }
-.testi-person { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
-.testi-avatar {
-  width: 46px; height: 46px; border-radius: 50%; background: var(--grad-green);
-  display: flex; align-items: center; justify-content: center; color: var(--gold-300); font-weight: 700;
+.reg-chip:hover { border-color: var(--gold-500); transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.reg-chip .ic {
+  width: 48px; height: 48px; margin: 0 auto 14px; border-radius: 12px;
+  background: var(--grad-green); color: var(--gold-300);
+  display: flex; align-items: center; justify-content: center; font-size: 19px;
 }
-.testi-person b { display: block; color: var(--green-900); font-size: 14.5px; }
-.testi-person span { font-size: 12.5px; color: #7a8880; }
+.reg-chip span { font-size: 13.5px; font-weight: 600; color: var(--green-900); }
+.reg-note {
+  margin-top: 40px; background: #fff; border-left: 3px solid var(--gold-500);
+  border-radius: 12px; padding: 22px 28px; font-size: 14.5px; color: #43524a;
+}
 
 /* ---------------- CTA banner ---------------- */
 .cta-banner {
@@ -555,10 +552,8 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
 @media (max-width: 1080px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .industries-grid { grid-template-columns: repeat(3, 1fr); }
-  .process-steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
-  .process-steps::before { display: none; }
+  .reg-grid { grid-template-columns: repeat(3, 1fr); }
   .stat-panel { grid-template-columns: 1fr 1fr; }
-  .testi-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -577,7 +572,8 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
   .section { padding: 70px 0; }
   .services-grid { grid-template-columns: 1fr; }
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
-  .testi-grid { grid-template-columns: 1fr; }
+  .reg-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .topbar .container { justify-content: center; text-align: center; }
