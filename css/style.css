@@ -42,6 +42,10 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -762,4 +766,10 @@ img { max-width: 100%; }
   .nav-mini { display: flex; }
   .hdr-tag { display: none; }
   .hero { padding-top: 28px; }
+
+  /* Touch targets: the handoff asks for >=44px on mobile, which the desktop
+     paddings do not reach. Desktop keeps the specified values. */
+  .btn-primary { padding: 16px; }
+  .btn-sm { padding: 15px 18px; }
+  .nav-mini a { padding: 8px 0; }
 }
