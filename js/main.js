@@ -46,6 +46,42 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(s => spyIo.observe(s));
   }
 
+  // Hero slider: rotate headline/background through each site section
+  const heroSlider = document.querySelector('.hero-slider');
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDots = document.querySelectorAll('.hero-dot');
+  if (heroSlider && heroSlides.length && heroDots.length) {
+    let currentSlide = 0;
+    let heroTimer = null;
+
+    const goToSlide = (index) => {
+      currentSlide = (index + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === currentSlide));
+      heroDots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentSlide));
+    };
+
+    const startHeroTimer = () => {
+      if (prefersReducedMotion) return;
+      stopHeroTimer();
+      heroTimer = setInterval(() => goToSlide(currentSlide + 1), 5500);
+    };
+    const stopHeroTimer = () => {
+      if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
+    };
+
+    heroDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        startHeroTimer();
+      });
+    });
+
+    heroSlider.addEventListener('mouseenter', stopHeroTimer);
+    heroSlider.addEventListener('mouseleave', startHeroTimer);
+
+    startHeroTimer();
+  }
+
   // Mobile menu toggle
   const navToggle = document.querySelector('.nav-toggle');
   const mobileMenu = document.querySelector('.mobile-menu');
