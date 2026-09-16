@@ -6,6 +6,29 @@
    locks a single theme, so there is no light-mode variant.
    ========================================================================== */
 
+/* Self-hosted latin subsets, variable weight axis. All three are OFL. */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/space-grotesk-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Surfaces */
   --canvas: #05060f;
