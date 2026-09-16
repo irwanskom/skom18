@@ -7,25 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => preloader && preloader.classList.add('hide'), 300);
   });
 
-  // Hero logo motion graphic: measure real path lengths, then play the line-draw
-  const heroSvg = document.getElementById('hero-logo-svg');
-  if (heroSvg && !prefersReducedMotion && typeof heroSvg.querySelector('.ld-draw').getTotalLength === 'function') {
-    const medallion = heroSvg.closest('.hero-medallion');
-    const drawEls = heroSvg.querySelectorAll('.ld-draw');
-    drawEls.forEach(el => {
-      const len = el.getTotalLength();
-      el.style.strokeDasharray = len;
-      el.style.strokeDashoffset = len;
-    });
-    medallion.classList.add('ld-armed');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        medallion.classList.add('ld-play');
-        drawEls.forEach(el => { el.style.strokeDashoffset = '0'; });
-      });
-    });
-  }
-
   // Navbar scroll state
   const navbar = document.querySelector('.navbar');
   const onScroll = () => {
