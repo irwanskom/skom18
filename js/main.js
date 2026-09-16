@@ -1,3 +1,11 @@
+// Optional smooth-easing upgrade via the "Motion" library (CDN, no build step).
+// If the CDN is unreachable this silently stays null and the site falls back
+// to the plain CSS transitions already defined in style.css.
+let motion = null;
+const motionReady = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ? Promise.resolve(null)
+  : import('https://cdn.jsdelivr.net/npm/motion/+esm').then(m => { motion = m; return m; }).catch(() => null);
+
 document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -77,11 +85,25 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.transitionDelay = Math.min(idx * 70, 420) + 'ms';
     });
   }
+  const revealEl = (el) => {
+    const delayMs = parseFloat(el.style.transitionDelay) || 0;
+    if (motion) {
+      el.style.transition = 'none';
+      motion.animate(
+        el,
+        { opacity: [0, 1], y: [22, 0] },
+        { duration: 0.7, delay: delayMs / 1000, easing: [0.22, 1, 0.36, 1] }
+      );
+      el.classList.add('in');
+    } else {
+      el.classList.add('in');
+    }
+  };
   if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in');
+          revealEl(entry.target);
           io.unobserve(entry.target);
         }
       });
