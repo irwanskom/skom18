@@ -527,15 +527,6 @@ section { position: relative; }
 .industry-chip span { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--cream); }
 
 /* ---------------- Why us / stats ---------------- */
-.why-section { position: relative; overflow: hidden; }
-.why-bg { position: absolute; inset: 0; z-index: 0; }
-.why-bg img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: .28; }
-.why-bg::after {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(160deg, rgba(10,9,8,0.94) 0%, rgba(10,9,8,0.88) 55%, rgba(10,9,8,0.96) 100%);
-}
-.why-section > .container { position: relative; z-index: 2; }
-
 .why-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; margin-bottom: 56px; }
 .why-col { text-align: center; }
 .why-col-icon {
