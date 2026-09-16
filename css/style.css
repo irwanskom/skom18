@@ -354,8 +354,11 @@ img { max-width: 100%; }
 /* ---------------- Photo grid ---------------- */
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 12px;
+  /* Capped so the photos stay supporting evidence on wide screens instead of
+     dominating the section, matching the width the lead above is held to. */
+  max-width: 1056px;
 }
 
 .photo-card {
@@ -367,14 +370,17 @@ img { max-width: 100%; }
 .photo-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  /* Without this the width/height attributes fix the height and aspect-ratio
+     is ignored, leaving the photos several times taller than intended. */
+  height: auto;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
 }
 
 .photo-card figcaption {
-  font: 400 12px/1.5 var(--font-sans);
+  font: 400 11.5px/1.5 var(--font-sans);
   color: var(--cream-mut);
-  padding: 12px 14px;
+  padding: 10px 12px;
 }
 
 /* ---------------- Services ---------------- */
