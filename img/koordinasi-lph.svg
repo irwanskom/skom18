@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="lphTitle">
+  <title id="lphTitle">Koordinasi dengan Lembaga Pemeriksa Halal (LPH)</title>
+  <defs>
+    <linearGradient id="lphBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1815"/>
+      <stop offset="100%" stop-color="#0a0908"/>
+    </linearGradient>
+    <linearGradient id="lphGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3e2bb"/>
+      <stop offset="50%" stop-color="#d9b877"/>
+      <stop offset="100%" stop-color="#ad8442"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#lphBg)"/>
+  <circle cx="130" cy="100" r="200" fill="rgba(217,184,119,0.06)"/>
+  <circle cx="700" cy="500" r="180" fill="rgba(217,184,119,0.05)"/>
+
+  <!-- Meeting table -->
+  <ellipse cx="400" cy="430" rx="230" ry="34" fill="rgba(245,241,232,0.05)" stroke="url(#lphGold)" stroke-width="3"/>
+
+  <!-- Person left -->
+  <g transform="translate(270,220)" fill="none" stroke="url(#lphGold)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="34" fill="rgba(245,241,232,0.04)"/>
+    <path d="M-60 170 C-60 100 -34 70 0 70 C34 70 60 100 60 170" fill="rgba(245,241,232,0.04)"/>
+  </g>
+
+  <!-- Person right -->
+  <g transform="translate(530,220)" fill="none" stroke="url(#lphGold)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="34" fill="rgba(245,241,232,0.04)"/>
+    <path d="M-60 170 C-60 100 -34 70 0 70 C34 70 60 100 60 170" fill="rgba(245,241,232,0.04)"/>
+  </g>
+
+  <!-- Document on table -->
+  <g transform="translate(365,390)">
+    <rect x="0" y="0" width="70" height="90" rx="6" fill="#1a1815" stroke="url(#lphGold)" stroke-width="3"/>
+    <line x1="12" y1="22" x2="58" y2="22" stroke="rgba(245,241,232,0.45)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="12" y1="38" x2="58" y2="38" stroke="rgba(245,241,232,0.45)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M18 58 L30 70 L54 46" fill="none" stroke="url(#lphGold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Handshake motif -->
+  <g transform="translate(400,300)" fill="none" stroke="url(#lphGold)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-40 0 L-14 -14 L14 -14 L40 0 L20 18 L0 4 L-20 18 Z" fill="rgba(217,184,119,0.15)"/>
+  </g>
+
+  <text x="60" y="540" font-family="Poppins, Arial, sans-serif" font-size="26" font-weight="600" fill="#f5f1e8">Koordinasi dengan LPH</text>
+</svg>
