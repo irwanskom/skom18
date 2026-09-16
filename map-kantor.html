@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lokasi kantor — Signature Halal</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
 <style>
 html,body{margin:0;height:100%;background:#1a1815;font-family:'Poppins',system-ui,sans-serif}
 #map{height:100%;width:100%}
@@ -33,24 +31,63 @@ html,body{margin:0;height:100%;background:#1a1815;font-family:'Poppins',system-u
   <a href="https://www.google.com/maps/search/?api=1&amp;query=Gedung+Jaya+Jl.+M.H.+Thamrin+No.12+Menteng+Jakarta+Pusat" target="_blank" rel="noopener">Lihat lokasi di Google Maps</a>
 </div>
 <script>
-// The address block stays visible when Leaflet is unavailable (CDN blocked,
-// offline, CSP), so the embed never renders as an empty box.
-if (typeof L !== 'undefined') {
-  document.getElementById('fallback').hidden = true;
-  document.getElementById('map').hidden = false;
+(function () {
+  // Prefer the vendored copy (see assets/vendor/leaflet/README.md); fall back to
+  // the CDN while it is absent. If neither loads, the address block stays put so
+  // the embed never renders as an empty box.
+  var LOCAL = 'assets/vendor/leaflet/';
+  var CDN = 'https://unpkg.com/leaflet@1.9.4/dist/';
+  var SRI_CSS = 'sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H';
+  var SRI_JS = 'sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH';
 
-  var office = [-6.18690, 106.82320];
-  var map = L.map('map', { scrollWheelZoom: false }).setView(office, 16);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-  L.circleMarker(office, {
-    radius: 9, color: '#d9b877', weight: 3, fillColor: '#c9a05a', fillOpacity: 0.85
-  }).addTo(map).bindPopup(
-    '<b>PT Signature Halal Indonesia</b><br>Gedung Jaya, Jl. M.H. Thamrin No.12<br>Kb. Sirih, Menteng, Jakarta Pusat'
-  ).openPopup();
-}
+  function loadCss(href, integrity, onerror) {
+    var el = document.createElement('link');
+    el.rel = 'stylesheet';
+    el.href = href;
+    if (integrity) { el.integrity = integrity; el.crossOrigin = 'anonymous'; }
+    el.onerror = onerror || null;
+    document.head.appendChild(el);
+  }
+
+  function loadJs(src, integrity, onload, onerror) {
+    var el = document.createElement('script');
+    el.src = src;
+    if (integrity) { el.integrity = integrity; el.crossOrigin = 'anonymous'; }
+    el.onload = onload;
+    el.onerror = onerror;
+    document.head.appendChild(el);
+  }
+
+  // Returns false when the script resolved to something that is not Leaflet —
+  // a host that answers missing files with a 200 page would land here.
+  function initMap() {
+    if (typeof L === 'undefined') return false;
+
+    document.getElementById('fallback').hidden = true;
+    document.getElementById('map').hidden = false;
+
+    var office = [-6.18690, 106.82320];
+    var map = L.map('map', { scrollWheelZoom: false }).setView(office, 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.circleMarker(office, {
+      radius: 9, color: '#d9b877', weight: 3, fillColor: '#c9a05a', fillOpacity: 0.85
+    }).addTo(map).bindPopup(
+      '<b>PT Signature Halal Indonesia</b><br>Gedung Jaya, Jl. M.H. Thamrin No.12<br>Kb. Sirih, Menteng, Jakarta Pusat'
+    ).openPopup();
+    return true;
+  }
+
+  function cdnCss() { loadCss(CDN + 'leaflet.css', SRI_CSS); }
+  function cdnJs() { loadJs(CDN + 'leaflet.js', SRI_JS, initMap, null); }
+
+  // The two resolve independently, so a half-populated vendor directory still
+  // pairs a local file with its CDN counterpart at the same version.
+  loadCss(LOCAL + 'leaflet.css', null, cdnCss);
+  loadJs(LOCAL + 'leaflet.js', null, function () { if (!initMap()) cdnJs(); }, cdnJs);
+})();
 </script>
 </body>
 </html>
