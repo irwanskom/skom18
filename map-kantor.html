@@ -20,22 +20,37 @@ html,body{margin:0;height:100%;background:#1a1815;font-family:'Poppins',system-u
 .leaflet-control-attribution a{color:#b6ad9e}
 .leaflet-bar a{background:#1a1815;color:#f5f1e8;border-bottom-color:rgba(245,241,232,.18)}
 .leaflet-bar a:hover{background:#242019;color:#d9b877}
+#fallback{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px 22px;box-sizing:border-box;text-align:center}
+#fallback p{font:400 12px/1.6 'Poppins',system-ui,sans-serif;color:#8f8779;margin:0;max-width:24em}
+#fallback a{font:600 12.5px/1 'Poppins',system-ui,sans-serif;color:#f5f1e8;border:1px solid rgba(245,241,232,.18);border-radius:2px;padding:11px 16px;text-decoration:none}
+#fallback a:hover{color:#d9b877;border-color:#d9b877}
 </style>
 </head>
 <body>
-<div id="map"></div>
+<div id="map" hidden></div>
+<div id="fallback">
+  <p>Peta interaktif tidak dapat dimuat.</p>
+  <a href="https://www.google.com/maps/search/?api=1&amp;query=Gedung+Jaya+Jl.+M.H.+Thamrin+No.12+Menteng+Jakarta+Pusat" target="_blank" rel="noopener">Lihat lokasi di Google Maps</a>
+</div>
 <script>
-var office = [-6.18690, 106.82320];
-var map = L.map('map', { scrollWheelZoom: false }).setView(office, 16);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-L.circleMarker(office, {
-  radius: 9, color: '#d9b877', weight: 3, fillColor: '#c9a05a', fillOpacity: 0.85
-}).addTo(map).bindPopup(
-  '<b>PT Signature Halal Indonesia</b><br>Gedung Jaya, Jl. M.H. Thamrin No.12<br>Kb. Sirih, Menteng, Jakarta Pusat'
-).openPopup();
+// The address block stays visible when Leaflet is unavailable (CDN blocked,
+// offline, CSP), so the embed never renders as an empty box.
+if (typeof L !== 'undefined') {
+  document.getElementById('fallback').hidden = true;
+  document.getElementById('map').hidden = false;
+
+  var office = [-6.18690, 106.82320];
+  var map = L.map('map', { scrollWheelZoom: false }).setView(office, 16);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  L.circleMarker(office, {
+    radius: 9, color: '#d9b877', weight: 3, fillColor: '#c9a05a', fillOpacity: 0.85
+  }).addTo(map).bindPopup(
+    '<b>PT Signature Halal Indonesia</b><br>Gedung Jaya, Jl. M.H. Thamrin No.12<br>Kb. Sirih, Menteng, Jakarta Pusat'
+  ).openPopup();
+}
 </script>
 </body>
 </html>
