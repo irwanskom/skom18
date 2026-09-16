@@ -25,7 +25,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
@@ -60,25 +60,12 @@
 <div class="scroll-progress"><span></span></div>
 <div id="preloader"><img src="assets/logo-vertical.png" alt="" class="loader-mark"></div>
 
-<!-- Topbar -->
-<div class="topbar">
-  <div class="container">
-    <div>
-      <span class="topbar-item"><i class="fa-solid fa-phone"></i> 0813-4364-0048</span>
-      <span class="topbar-item"><i class="fa-solid fa-envelope"></i> signaturehalal@gmail.com</span>
-    </div>
-    <div class="topbar-socials">
-      <a href="https://instagram.com/signaturehalal" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://wa.me/6281343640048" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-  </div>
-</div>
-
 <!-- Navbar -->
 <header class="navbar">
   <div class="container nav-inner">
     <a href="#home" class="brand">
-      <img src="assets/logo-horizontal.png" alt="Signature Halal">
+      <img src="assets/logo.svg" alt="" width="28" height="34">
+      <span>Signature Halal</span>
     </a>
 
     <nav class="nav-links">
@@ -91,46 +78,48 @@
     </nav>
 
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-outline">Hubungi Kami</a>
       <a href="#contact" class="btn btn-gold">Konsultasi Gratis</a>
-      <button class="nav-toggle" aria-label="Menu">
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
-  <div class="mobile-menu">
-    <a href="#home">Beranda</a>
-    <a href="#about">Tentang Kami</a>
-    <a href="#services">Layanan</a>
-    <a href="#process">Proses</a>
-    <a href="#regulasi">Regulasi</a>
-    <a href="#contact">Kontak</a>
-    <a href="#contact" class="btn btn-gold" style="margin-top:14px;text-align:center;">Konsultasi Gratis</a>
-  </div>
 </header>
+
+<!-- Mobile full-screen nav -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#home">Beranda</a>
+  <a href="#about">Tentang Kami</a>
+  <a href="#services">Layanan</a>
+  <a href="#process">Proses</a>
+  <a href="#regulasi">Regulasi</a>
+  <a href="#contact">Kontak</a>
+  <div class="mobile-nav-divider"></div>
+  <a href="#contact" class="btn btn-gold">Konsultasi Gratis</a>
+</nav>
 
 <!-- Hero -->
 <section class="hero" id="home">
-  <div class="hero-orn"></div>
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow" data-reveal>Konsultan Pendamping Sertifikasi Halal</div>
-      <h1 data-reveal>Signature<br><span class="gold-text">Halal</span></h1>
-      <p class="hero-sub" data-reveal>Signature Halal mendampingi pelaku usaha meraih sertifikasi halal BPJPH skema reguler — dari persiapan dokumen, pengajuan, audit LPH, hingga sertifikat terbit, dengan pendekatan personal sesuai skala usaha Anda.</p>
+      <div class="eyebrow" data-reveal>Pendampingan Sertifikasi Halal</div>
+      <h1 data-reveal>Kepercayaan<span>Dimulai dari</span><span class="gold-text">Proses yang Tepat.</span></h1>
+      <p class="hero-sub" data-reveal>Signature Halal mendampingi pelaku usaha melalui proses sertifikasi halal BPJPH skema reguler — dari persiapan dokumen, pengajuan, audit LPH, hingga sertifikat halal terbit.</p>
       <div class="hero-actions" data-reveal>
         <a href="#contact" class="btn btn-gold">Konsultasi Gratis <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="#services" class="btn btn-outline">Lihat Layanan Kami</a>
+        <a href="#services" class="btn btn-outline">Lihat Layanan <i class="fa-solid fa-arrow-right"></i></a>
       </div>
       <div class="hero-stats">
-        <div class="stat" data-reveal><i class="fa-solid fa-list-check"></i><div><b data-count-to="8">8</b><span>Tahapan Pendampingan</span></div></div>
-        <div class="stat" data-reveal><i class="fa-solid fa-industry"></i><div><b data-count-to="3">3</b><span>Sektor: Pangan, Kosmetik, Kimia</span></div></div>
-        <div class="stat" data-reveal><i class="fa-solid fa-handshake"></i><div><b>Personal</b><span>Bukan Sekadar Transaksional</span></div></div>
+        <div class="stat" data-reveal><b>08</b><span>Tahapan Pendampingan</span></div>
+        <div class="stat" data-reveal><b>03</b><span>Sektor Utama</span></div>
+        <div class="stat" data-reveal><b>Reguler</b><span>Skema BPJPH</span></div>
       </div>
     </div>
 
     <div class="hero-visual" data-reveal>
-      <div class="hero-medallion">
-        <img src="assets/manual-sjph-mockup.png" alt="Manual SJPH Signature Halal">
+      <div class="hero-panel">
+        <img src="assets/manual-sjph-mockup.png" alt="Manual Sistem Jaminan Produk Halal Signature Halal">
+        <span class="hero-panel-caption">Manual SJPH</span>
       </div>
     </div>
   </div>
@@ -161,11 +150,49 @@
   </div>
 </div>
 
+<!-- Expertise (Layanan) -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <div class="eyebrow">Our Expertise</div>
+      <h2>Pendampingan Halal yang Terstruktur.</h2>
+      <p>Kami mendampingi pelaku usaha melalui seluruh tahapan sertifikasi halal skema reguler — mulai dari persiapan dokumen hingga penerbitan sertifikat.</p>
+    </div>
+
+    <div class="expertise-grid">
+      <div class="expertise-card" data-reveal>
+        <span class="expertise-num">01</span>
+        <div class="expertise-icon"><i class="fa-solid fa-comments"></i></div>
+        <h3>Konsultasi &amp; Gap Analysis</h3>
+        <p>Diskusi kebutuhan, pengecekan kelengkapan legalitas usaha, dan identifikasi bahan/proses produksi.</p>
+      </div>
+      <div class="expertise-card" data-reveal>
+        <span class="expertise-num">02</span>
+        <div class="expertise-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <h3>Penyusunan Dokumen SJPH</h3>
+        <p>Manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir proses produksi sesuai standar BPJPH.</p>
+      </div>
+      <div class="expertise-card" data-reveal>
+        <span class="expertise-num">03</span>
+        <div class="expertise-icon"><i class="fa-solid fa-file-import"></i></div>
+        <h3>Pendaftaran ke BPJPH</h3>
+        <p>Pengajuan permohonan sertifikasi halal melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
+      </div>
+      <div class="expertise-card" data-reveal>
+        <span class="expertise-num">04</span>
+        <div class="expertise-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3>Pendampingan Audit LPH</h3>
+        <p>Pendampingan audit lapangan oleh LPH serta tindak lanjut atas temuan atau catatan hasil audit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- About -->
-<section class="section" id="about">
+<section class="section on-dark" id="about">
   <div class="container about-grid">
-    <div data-reveal style="position:relative;">
-      <div class="about-photo">
+    <div class="about-visual" data-reveal>
+      <div class="about-panel">
         <img src="assets/logo-vertical.png" alt="Signature Halal">
         <div class="frame"></div>
       </div>
@@ -183,15 +210,15 @@
 
       <div class="about-points">
         <div class="about-point">
-          <div class="chk"><i class="fa-solid fa-check"></i></div>
+          <div class="rule"></div>
           <div><strong>Pendampingan Personal</strong><span>Bukan sekadar transaksional — disesuaikan dengan kondisi dan skala usaha Anda.</span></div>
         </div>
         <div class="about-point">
-          <div class="chk"><i class="fa-solid fa-check"></i></div>
+          <div class="rule"></div>
           <div><strong>Pengalaman Lintas Sektor</strong><span>Pangan, kosmetik, dan produk kimia, dari UMKM hingga industri skala besar.</span></div>
         </div>
         <div class="about-point">
-          <div class="chk"><i class="fa-solid fa-check"></i></div>
+          <div class="rule"></div>
           <div><strong>Proses Transparan</strong><span>Dari pengajuan ke BPJPH, audit LPH, hingga sertifikat terbit.</span></div>
         </div>
       </div>
@@ -199,56 +226,33 @@
   </div>
 </section>
 
-<!-- Services -->
-<section class="section" id="services">
+<!-- Who we serve -->
+<section class="section">
   <div class="container">
     <div class="section-head center" data-reveal>
-      <div class="eyebrow">Layanan Kami</div>
-      <h2>Konsultasi &amp; Pendampingan Sertifikasi Halal</h2>
-      <p>Kami mendampingi pelaku usaha melalui seluruh tahapan sertifikasi halal skema reguler — mulai dari persiapan dokumen, pengajuan ke BPJPH, proses audit oleh Lembaga Pemeriksa Halal (LPH), hingga penerbitan sertifikat.</p>
+      <div class="eyebrow">Who We Serve</div>
+      <h2>Satu Standar. Berbagai Skala Usaha.</h2>
     </div>
-
-    <div class="services-grid">
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-comments"></i></div>
-        <h3>Konsultasi Awal &amp; Gap Analysis</h3>
-        <p>Diskusi kebutuhan, pengecekan kelengkapan legalitas usaha, dan identifikasi bahan/proses produksi.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
+    <div class="serve-grid">
+      <div class="serve-block" data-reveal>
+        <span class="idx">01</span>
+        <h3>UMKM Pangan</h3>
+        <p>Usaha kecil dan menengah di sektor pangan, dari dapur rumahan hingga siap naik kelas.</p>
       </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-file-lines"></i></div>
-        <h3>Penyusunan Dokumen SJPH</h3>
-        <p>Manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir proses produksi sesuai standar BPJPH.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
+      <div class="serve-block" data-reveal>
+        <span class="idx">02</span>
+        <h3>Kosmetik</h3>
+        <p>Produsen kosmetik yang membutuhkan kepastian status kehalalan bahan dan proses produksi.</p>
       </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-file-import"></i></div>
-        <h3>Pendaftaran ke BPJPH</h3>
-        <p>Pengajuan permohonan sertifikasi halal melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
+      <div class="serve-block" data-reveal>
+        <span class="idx">03</span>
+        <h3>Produk Kimia</h3>
+        <p>Pelaku usaha produk kimiawi yang tunduk pada kewajiban sertifikasi halal sesuai UU JPH.</p>
       </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-        <h3>Pendampingan Audit LPH</h3>
-        <p>Pendampingan audit lapangan oleh LPH serta tindak lanjut atas temuan atau catatan hasil audit.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-        <h3>Pendampingan Sidang Fatwa MUI</h3>
-        <p>Pendampingan hingga penetapan status kehalalan produk melalui sidang komisi fatwa MUI.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
-        <h3>Konsultasi Multi-Sektor</h3>
-        <p>Melayani sektor pangan, kosmetik, dan produk kimia — dari UMKM hingga industri skala besar.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
+      <div class="serve-block" data-reveal>
+        <span class="idx">04</span>
+        <h3>Industri Skala Besar</h3>
+        <p>Dapur produksi skala besar dan rumah potong unggas dengan kebutuhan pendampingan menyeluruh.</p>
       </div>
     </div>
   </div>
@@ -258,111 +262,99 @@
 <section class="section on-dark" id="process">
   <div class="container">
     <div class="process-head" data-reveal>
-      <div>
-        <div class="eyebrow">Cara Kerja</div>
-        <h2>Alur sertifikasi yang sederhana dan jelas.</h2>
-      </div>
-      <p>Delapan tahapan pendampingan yang kami jalankan bersama klien, dari konsultasi awal hingga sertifikat halal terbit.</p>
+      <div class="eyebrow">Our Process</div>
+      <h2>08 Langkah Menuju Sertifikasi Halal.</h2>
     </div>
 
-    <div class="process-grid">
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">01</span>
-        <div class="process-num">01</div>
-        <h4>Konsultasi Awal</h4>
-        <p>Diskusi kebutuhan, pengecekan legalitas usaha, dan identifikasi bahan/proses produksi.</p>
+    <div class="process-timeline">
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">01</div>
+        <div class="process-step-body">
+          <h4>Konsultasi Awal &amp; Pengumpulan Data</h4>
+          <p>Diskusi kebutuhan, pengecekan legalitas usaha, dan identifikasi bahan/proses produksi.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">02</span>
-        <div class="process-num">02</div>
-        <h4>Dokumen SJPH</h4>
-        <p>Penyusunan manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir produksi.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">02</div>
+        <div class="process-step-body">
+          <h4>Penyusunan Dokumen SJPH</h4>
+          <p>Penyusunan manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir produksi.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">03</span>
-        <div class="process-num">03</div>
-        <h4>Pendaftaran BPJPH</h4>
-        <p>Pengajuan permohonan melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">03</div>
+        <div class="process-step-body">
+          <h4>Pendaftaran Permohonan ke BPJPH</h4>
+          <p>Pengajuan permohonan melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">04</span>
-        <div class="process-num">04</div>
-        <h4>Verifikasi Dokumen</h4>
-        <p>Pengecekan kelengkapan dan kesesuaian dokumen sebelum audit lapangan dijadwalkan.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">04</div>
+        <div class="process-step-body">
+          <h4>Verifikasi &amp; Validasi Dokumen</h4>
+          <p>Pengecekan kelengkapan dan kesesuaian dokumen sebelum audit lapangan dijadwalkan.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">05</span>
-        <div class="process-num">05</div>
-        <h4>Audit Lapangan</h4>
-        <p>Pemeriksaan langsung ke lokasi produksi — bahan, proses, alat, dan penyimpanan.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">05</div>
+        <div class="process-step-body">
+          <h4>Audit Lapangan oleh LPH</h4>
+          <p>Pemeriksaan langsung ke lokasi produksi — bahan, proses, alat, dan penyimpanan.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">06</span>
-        <div class="process-num">06</div>
-        <h4>Perbaikan Temuan</h4>
-        <p>Tindak lanjut atas temuan audit, termasuk penyediaan bukti pendukung tambahan.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">06</div>
+        <div class="process-step-body">
+          <h4>Perbaikan Temuan Audit</h4>
+          <p>Tindak lanjut atas temuan audit, termasuk penyediaan bukti pendukung tambahan.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">07</span>
-        <div class="process-num">07</div>
-        <h4>Sidang Fatwa MUI</h4>
-        <p>Penetapan status kehalalan produk melalui sidang komisi fatwa.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">07</div>
+        <div class="process-step-body">
+          <h4>Sidang Fatwa Halal</h4>
+          <p>Penetapan status kehalalan produk melalui sidang komisi fatwa MUI.</p>
+        </div>
       </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">08</span>
-        <div class="process-num">08</div>
-        <h4>Sertifikat Terbit</h4>
-        <p>Sertifikat halal dapat diunduh melalui SIHALAL, siap digunakan pada label produk.</p>
+      <div class="process-step" data-reveal>
+        <div class="process-step-num">08</div>
+        <div class="process-step-body">
+          <h4>Penerbitan Sertifikat Halal</h4>
+          <p>Sertifikat halal dapat diunduh melalui SIHALAL, siap digunakan pada label produk.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Industries -->
-<section class="section" style="padding-top:80px;padding-bottom:80px;">
-  <div class="container">
-    <div class="section-head center" data-reveal>
-      <div class="eyebrow">Skala Usaha yang Kami Layani</div>
-      <h2>Lintas Sektor, Satu Standar Kepercayaan</h2>
-    </div>
-    <div class="industries-grid">
-      <div class="industry-chip" data-reveal><div class="ic">🏭</div><span>Dapur Produksi Skala Besar</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">🐔</div><span>Rumah Potong Unggas</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">🍽️</div><span>UMKM Pangan</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">💄</div><span>Kosmetik</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">🧪</div><span>Produk Kimia</span></div>
     </div>
   </div>
 </section>
 
 <!-- Why us -->
-<section class="section on-dark">
+<section class="section">
   <div class="container">
     <div class="section-head center" data-reveal>
-      <div class="eyebrow">Mengapa Signature Halal</div>
-      <h2 style="color:var(--cream);">Kenapa Memilih Kami</h2>
+      <div class="eyebrow">Why Signature Halal?</div>
+      <h2>Bukan Sekadar Mengurus Sertifikat. Kami Mendampingi Prosesnya.</h2>
     </div>
 
     <div class="why-cols">
       <div class="why-col" data-reveal>
-        <div class="why-col-icon"><i class="fa-solid fa-handshake"></i></div>
+        <span class="why-col-num">01</span>
         <h4>Pendampingan Personal</h4>
         <p>Bukan sekadar transaksional — pendekatan disesuaikan dengan kondisi dan skala usaha Anda.</p>
       </div>
       <div class="why-col" data-reveal>
-        <div class="why-col-icon"><i class="fa-solid fa-industry"></i></div>
+        <span class="why-col-num">02</span>
         <h4>Pengalaman Lintas Sektor</h4>
         <p>Pangan, kosmetik, dan produk kimia — dari UMKM hingga industri skala besar.</p>
       </div>
       <div class="why-col" data-reveal>
-        <div class="why-col-icon"><i class="fa-solid fa-list-check"></i></div>
+        <span class="why-col-num">03</span>
         <h4>Proses Transparan</h4>
         <p>Dari awal pengajuan hingga sertifikat terbit, setiap tahap dikomunikasikan dengan jelas.</p>
       </div>
       <div class="why-col" data-reveal>
-        <div class="why-col-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h4>Kepatuhan Regulasi Resmi</h4>
-        <p>Skema reguler BPJPH, terdaftar dan terpantau melalui sistem resmi SIHALAL.</p>
+        <span class="why-col-num">04</span>
+        <h4>Pendampingan End-to-End</h4>
+        <p>Dari konsultasi awal hingga sertifikat terbit, kami mendampingi setiap tahap tanpa terputus.</p>
       </div>
     </div>
 
@@ -376,37 +368,55 @@
 </section>
 
 <!-- Regulasi -->
-<section class="section" id="regulasi">
+<section class="section on-dark" id="regulasi">
   <div class="container">
     <div class="section-head center" data-reveal>
-      <div class="eyebrow">Regulasi</div>
-      <h2>Produk yang Wajib Bersertifikat Halal</h2>
+      <div class="eyebrow">Halal Regulation</div>
+      <h2>Produk yang Wajib Bersertifikat Halal.</h2>
       <p>Berdasarkan Undang-Undang No. 33 Tahun 2014 tentang Jaminan Produk Halal (UU JPH), berikut kategori produk yang wajib memiliki sertifikat halal.</p>
     </div>
-    <div class="reg-grid">
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-utensils"></i></div><span>Makanan &amp; Minuman</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-pills"></i></div><span>Obat-obatan</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-pump-soap"></i></div><span>Kosmetik</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-flask"></i></div><span>Produk Kimiawi</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-dna"></i></div><span>Produk Biologi</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-magnifying-glass-chart"></i></div><span>Produk Rekayasa Genetik</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-box-open"></i></div><span>Barang Gunaan (Kemasan, Alat Masak, dll.)</span></div>
+    <div class="reg-list">
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">01</span><span class="label">Makanan &amp; Minuman</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">02</span><span class="label">Obat-obatan</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">03</span><span class="label">Kosmetik</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">04</span><span class="label">Produk Kimiawi</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">05</span><span class="label">Produk Biologi</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">06</span><span class="label">Produk Rekayasa Genetik</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
+      <div class="reg-row" data-reveal>
+        <div class="reg-row-left"><span class="reg-row-num">07</span><span class="label">Barang Gunaan (Kemasan, Alat Masak, dll.)</span></div>
+        <i class="fa-solid fa-arrow-right ic"></i>
+      </div>
     </div>
     <p class="reg-note" data-reveal>Signature Halal membantu Anda memahami kewajiban ini dan mendampingi proses sertifikasinya secara menyeluruh.</p>
   </div>
 </section>
 
 <!-- CTA Banner -->
-<section class="section" style="padding-top:0;">
+<section class="section" style="padding-bottom:0;">
   <div class="container">
     <div class="cta-banner" data-reveal>
-      <div>
-        <h2>Siap Memulai Perjalanan Sertifikasi Halal Anda?</h2>
-        <p>Jadwalkan konsultasi gratis bersama tim ahli kami dan dapatkan roadmap sertifikasi yang sesuai kebutuhan bisnis Anda.</p>
-      </div>
+      <h2>Siap Memulai Proses Sertifikasi Halal?</h2>
+      <p>Konsultasikan kebutuhan sertifikasi halal bisnis Anda bersama Signature Halal.</p>
       <div class="cta-actions">
-        <a href="#contact" class="btn btn-gold">Konsultasi Sekarang</a>
-        <a href="tel:+6281343640048" class="btn btn-outline">Telepon Kami</a>
+        <a href="#contact" class="btn btn-gold">Konsultasi Gratis <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -418,7 +428,7 @@
     <div data-reveal>
       <div class="eyebrow">Hubungi Kami</div>
       <h2>Konsultasikan Kebutuhan Halal Bisnis Anda</h2>
-      <p style="color:var(--cream-dim);margin-bottom:30px;">Kami siap membantu menjawab pertanyaan seputar sertifikasi halal skema reguler untuk usaha pangan, kosmetik, maupun produk kimia Anda.</p>
+      <p style="color:var(--text-dim);margin-bottom:30px;">Kami siap membantu menjawab pertanyaan seputar sertifikasi halal skema reguler untuk usaha pangan, kosmetik, maupun produk kimia Anda.</p>
 
       <div class="contact-info">
         <div class="contact-item">
@@ -497,10 +507,8 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">
-          <img src="assets/logo-horizontal.png" alt="Signature Halal">
-        </div>
-        <p class="desc">Sentuhan personal kami, untuk kepercayaan kehalalan Anda. Konsultan pendamping sertifikasi halal BPJPH skema reguler.</p>
+        <div class="footer-brand">Signature Halal</div>
+        <p class="desc">Konsultan Pendamping Sertifikasi Halal BPJPH skema reguler untuk sektor pangan, kosmetik, dan produk kimia.</p>
         <div class="footer-socials">
           <a href="https://instagram.com/signaturehalal" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://wa.me/6281343640048" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
@@ -514,6 +522,7 @@
           <li><a href="#about">Tentang Kami</a></li>
           <li><a href="#services">Layanan</a></li>
           <li><a href="#process">Proses</a></li>
+          <li><a href="#regulasi">Regulasi</a></li>
           <li><a href="#contact">Kontak</a></li>
         </ul>
       </div>
@@ -521,10 +530,10 @@
       <div>
         <h5>Layanan</h5>
         <ul>
-          <li><a href="#services">Sertifikasi Halal Pangan</a></li>
-          <li><a href="#services">Sertifikasi Halal Kosmetik</a></li>
-          <li><a href="#services">Sertifikasi Halal Produk Kimia</a></li>
-          <li><a href="#services">Penyusunan Dokumen SJPH</a></li>
+          <li><a href="#services">Sertifikasi Halal</a></li>
+          <li><a href="#services">Penyusunan SJPH</a></li>
+          <li><a href="#services">Pendampingan Audit</a></li>
+          <li><a href="#contact">Konsultasi Halal</a></li>
         </ul>
       </div>
 
@@ -540,7 +549,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 Signature Halal. Seluruh hak cipta dilindungi.</span>
+      <span>© 2026 Signature Halal. All rights reserved.</span>
       <span>Konsultan Pendamping Sertifikasi Halal</span>
     </div>
   </div>

@@ -9,9 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Navbar scroll state + scroll progress bar
   const navbar = document.querySelector('.navbar');
+  const hero = document.querySelector('.hero');
   const progressBar = document.querySelector('.scroll-progress span');
+  const solidThreshold = () => (hero ? Math.max(hero.offsetHeight - 140, 80) : 80);
   const onScroll = () => {
-    if (window.scrollY > 12) navbar.classList.add('scrolled');
+    if (window.scrollY > solidThreshold()) navbar.classList.add('scrolled');
     else navbar.classList.remove('scrolled');
 
     const backTop = document.querySelector('.back-top');
@@ -46,15 +48,25 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(s => spyIo.observe(s));
   }
 
-  // Mobile menu toggle
+  // Mobile full-screen nav toggle
   const navToggle = document.querySelector('.nav-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  if (navToggle && mobileMenu) {
-    navToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  const mobileNav = document.querySelector('.mobile-nav');
+  if (navToggle && mobileNav) {
+    const closeMenu = () => {
+      navToggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    };
+    const toggleMenu = () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      document.body.classList.toggle('menu-open', isOpen);
+    };
+    navToggle.addEventListener('click', toggleMenu);
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeMenu);
     });
   }
 
