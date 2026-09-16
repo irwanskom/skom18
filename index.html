@@ -129,7 +129,27 @@
 
     <div class="hero-visual" data-reveal>
       <div class="hero-medallion">
-        <img src="assets/logo-vertical.png" alt="Signature Halal">
+        <svg id="hero-logo-svg" viewBox="0 0 111 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Signature Halal">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f5da8a"/>
+              <stop offset="45%" stop-color="#d4af37"/>
+              <stop offset="100%" stop-color="#a97c1f"/>
+            </linearGradient>
+            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0f5132"/>
+              <stop offset="55%" stop-color="#1f8a53"/>
+              <stop offset="100%" stop-color="#2fae6d"/>
+            </linearGradient>
+          </defs>
+          <path class="ld-draw ld-arch" d="M16,60 C16,15 33,4 55,4 C78,4 96,15 96,60"
+                fill="none" stroke="url(#goldGrad)" stroke-width="12" stroke-linecap="round"/>
+          <path class="ld-draw ld-body" d="M44,35 L44,63 C18,63 2,70 2,80 C2,90 18,97 44,97 C44,114 48,120 56,120 C64,120 68,114 68,97 C94,97 110,90 110,80 C110,70 94,63 68,63 L68,35"
+                fill="none" stroke="url(#greenGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="ld-fade ld-leaf" d="M56,20 C50,45 50,80 56,103 C62,80 62,45 56,20 Z" fill="#1f8a53"/>
+          <path class="ld-draw ld-infinity" d="M56,120 C44,120 42,113 49,110 C53,108 56,110 56,113 C56,110 59,108 63,110 C70,113 68,120 56,120 C36,120 18,145 27,172 C33,190 45,199 56,199 C67,199 79,190 85,172 C94,145 76,120 56,120 Z"
+                fill="none" stroke="url(#goldGrad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="badge-certified">
         <div class="icon-circ"><i class="fa-solid fa-certificate"></i></div>

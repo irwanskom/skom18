@@ -302,14 +302,17 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
 .hero-medallion::before {
   content: ""; position: absolute; inset: 22px; border-radius: 50%; border: 1px dashed rgba(212,175,55,0.35);
 }
-.hero-medallion img {
-  width: 62%;
-  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.4));
-  opacity: 0; transform: scale(.85);
-  animation: medallionIn .8s ease-out .2s forwards;
-}
+.hero-medallion svg { width: 42%; overflow: visible; filter: drop-shadow(0 12px 30px rgba(0,0,0,0.4)); }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-@keyframes medallionIn { to { opacity: 1; transform: scale(1); } }
+
+/* Hero logo motion graphic: line-draw + fade-in, armed via JS, no-op otherwise */
+.hero-medallion .ld-draw { transition: stroke-dashoffset 1s ease-out; }
+.hero-medallion.ld-armed .ld-fade { opacity: 0; transform: scale(.85); transform-origin: 56px 60px; transition: opacity .5s ease-out, transform .5s ease-out; }
+.hero-medallion.ld-armed.ld-play .ld-fade { opacity: 1; transform: scale(1); }
+.hero-medallion .ld-arch { transition-delay: 0s; }
+.hero-medallion .ld-body { transition-delay: .5s; }
+.hero-medallion .ld-leaf { transition-delay: .9s; }
+.hero-medallion .ld-infinity { transition-delay: 1.1s; }
 
 /* Editorial numeral pop-in for the 8-step process, keyed off the existing scroll-reveal class */
 .process-num { opacity: 0; transform: scale(.6); transition: opacity .45s ease-out, transform .45s cubic-bezier(.34,1.56,.64,1); }
@@ -317,7 +320,8 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-medallion, .badge-certified { animation: none; }
-  .hero-medallion img { animation: none; opacity: 1; transform: none; }
+  .hero-medallion .ld-draw { transition: none; }
+  .hero-medallion.ld-armed .ld-fade { opacity: 1; transform: none; transition: none; }
   .process-num { opacity: 1; transform: none; transition: none; }
   [data-reveal] { transition-duration: .01ms !important; }
 }
@@ -607,7 +611,7 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
   .nav-toggle { display: flex; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-visual { order: -1; margin-bottom: 20px; }
-  .hero-medallion img { width: 44%; }
+  .hero-medallion svg { width: 34%; }
   .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
   .about-card { position: static; margin-top: -40px; margin-left: auto; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
