@@ -313,8 +313,32 @@ section.on-dark .eyebrow::before { background: var(--grad-gold); }
 .hero-medallion::before {
   content: ""; position: absolute; inset: 22px; border-radius: 50%; border: 1px dashed rgba(212,175,55,0.35);
 }
-.hero-medallion img { width: 58%; filter: drop-shadow(0 12px 30px rgba(0,0,0,0.4)); }
+.hero-medallion svg { width: 58%; overflow: visible; filter: drop-shadow(0 12px 30px rgba(0,0,0,0.4)); }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+/* Hero logo motion graphic: line-draw + fade-in, armed via JS, no-op otherwise */
+.hero-medallion .ld-draw { transition: stroke-dashoffset 1s ease-out; }
+.hero-medallion.ld-armed .ld-fade { opacity: 0; transform: scale(.88); transform-origin: 100px 100px; transition: opacity .5s ease-out, transform .5s ease-out; }
+.hero-medallion.ld-armed.ld-play .ld-fade { opacity: 1; transform: scale(1); }
+.hero-medallion .ld-arch { transition-delay: 0s; }
+.hero-medallion .ld-notch { transition-delay: .3s; }
+.hero-medallion .ld-capsule-outline { transition-delay: .7s; }
+.hero-medallion .ld-capsule-fill { transition-delay: .6s; }
+.hero-medallion .ld-leaf-line { transition-delay: 1s; }
+.hero-medallion .ld-leaf-fill { transition-delay: .95s; }
+.hero-medallion .ld-infinity { transition-delay: 1.3s; }
+
+/* Editorial numeral pop-in for the 8-step process, keyed off the existing scroll-reveal class */
+.process-num { opacity: 0; transform: scale(.6); transition: opacity .45s ease-out, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.process-step.in .process-num { opacity: 1; transform: scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-medallion, .badge-certified { animation: none; }
+  .hero-medallion .ld-draw { transition: none; }
+  .hero-medallion.ld-armed .ld-fade { opacity: 1; transform: none; transition: none; }
+  .process-num { opacity: 1; transform: none; transition: none; }
+  [data-reveal] { transition-duration: .01ms !important; }
+}
 
 .badge-certified {
   position: absolute; bottom: 6%; left: -6%;

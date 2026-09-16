@@ -1,9 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Preloader
   const preloader = document.getElementById('preloader');
   window.addEventListener('load', () => {
     setTimeout(() => preloader && preloader.classList.add('hide'), 300);
   });
+
+  // Hero logo motion graphic: measure real path lengths, then play the line-draw
+  const heroSvg = document.getElementById('hero-logo-svg');
+  if (heroSvg && !prefersReducedMotion && typeof heroSvg.querySelector('.ld-draw').getTotalLength === 'function') {
+    const medallion = heroSvg.closest('.hero-medallion');
+    const drawEls = heroSvg.querySelectorAll('.ld-draw');
+    drawEls.forEach(el => {
+      const len = el.getTotalLength();
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+    });
+    medallion.classList.add('ld-armed');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        medallion.classList.add('ld-play');
+        drawEls.forEach(el => { el.style.strokeDashoffset = '0'; });
+      });
+    });
+  }
 
   // Navbar scroll state
   const navbar = document.querySelector('.navbar');
@@ -37,9 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Scroll reveal
+  // Scroll reveal, staggered per group of siblings so grids/lists cascade in
   const revealEls = document.querySelectorAll('[data-reveal]');
-  if ('IntersectionObserver' in window) {
+  if (!prefersReducedMotion) {
+    const staggerCounts = new Map();
+    revealEls.forEach(el => {
+      const parent = el.parentElement;
+      const idx = staggerCounts.get(parent) || 0;
+      staggerCounts.set(parent, idx + 1);
+      el.style.transitionDelay = Math.min(idx * 70, 420) + 'ms';
+    });
+  }
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -51,6 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => io.observe(el));
   } else {
     revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Animated counters for statistic numbers
+  const countEls = document.querySelectorAll('[data-count-to]');
+  if (countEls.length) {
+    const animateCount = (el) => {
+      const target = parseInt(el.getAttribute('data-count-to'), 10);
+      if (isNaN(target)) return;
+      if (prefersReducedMotion) { el.textContent = target; return; }
+      const duration = 900;
+      const start = performance.now();
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(tick);
+    };
+    if ('IntersectionObserver' in window && !prefersReducedMotion) {
+      const countIo = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            countIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      countEls.forEach(el => countIo.observe(el));
+    }
   }
 
   // Contact form -> WhatsApp handoff
