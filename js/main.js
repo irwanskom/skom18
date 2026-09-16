@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal on entry. IntersectionObserver rather than a scroll listener so
+  // nothing runs per frame.
+  const revealables = document.querySelectorAll('[data-reveal]');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealables.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    revealables.forEach(el => observer.observe(el));
+  }
+
   const form = document.getElementById('contact-form');
   const success = document.querySelector('.form-success');
   if (!form || !success) return;
@@ -45,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateSubmitState();
       success.hidden = true;
       form.hidden = false;
+      namaEl.focus();
     });
   }
 });
