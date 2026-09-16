@@ -338,9 +338,10 @@ section { position: relative; }
   animation: float 6s ease-in-out infinite 1.2s;
 }
 .badge-certified .icon-circ {
-  width: 38px; height: 38px; border-radius: 50%; background: var(--grad-gold);
-  display: flex; align-items: center; justify-content: center; color: var(--ink); font-size: 16px;
+  flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--cream);
+  display: flex; align-items: center; justify-content: center; padding: 6px;
 }
+.badge-certified .icon-circ img { width: 100%; height: 100%; object-fit: contain; }
 .badge-certified small { display: block; font-weight: 400; opacity: .65; font-size: 11px; color: var(--cream-dim); }
 
 /* ---------------- Marquee / trust bar ---------------- */
