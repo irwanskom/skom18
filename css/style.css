@@ -259,7 +259,20 @@ a[href^="tel:"] { white-space: nowrap; }
   gap: 32px;
 }
 
-.nav-brand img { height: 40px; width: auto; }
+/* Logo dipecah menjadi mark dan wordmark, keduanya dipotong langsung dari
+   berkas logo resmi, supaya masing masing bisa dianimasikan terpisah tanpa
+   mengubah bentuk logonya sedikit pun. */
+.nav-brand,
+.footer-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+.brand-mark,
+.brand-mark-static { height: 40px; width: auto; flex: none; }
+.brand-word { height: 25px; width: auto; }
+.footer-lockup .brand-mark-static { height: 42px; }
+.footer-lockup .brand-word { height: 26px; }
 
 .nav-links {
   display: flex;
@@ -926,6 +939,58 @@ body.is-ready .hero-figure { animation: heroIn 0.95s var(--ease) 0.14s both; }
   to { opacity: 1; transform: none; }
 }
 
+/* Logo tampil satu kali saat halaman dibuka: mark tersingkap dari bawah
+   ke atas, lalu wordmark menyusul. Bentuk logonya tidak diubah sedikit pun,
+   yang bergerak hanya penyingkapannya. */
+.js .nav-brand .brand-mark,
+.js .nav-brand .brand-word { opacity: 0; }
+
+body.is-ready .nav-brand .brand-mark { animation: markRise 0.85s var(--ease) 0.1s both; }
+body.is-ready .nav-brand .brand-word { animation: wordIn 0.7s var(--ease) 0.5s both; }
+
+@keyframes markRise {
+  from { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(6px); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); transform: none; }
+}
+@keyframes wordIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Navbar merapat saat digulirkan, memberi ruang baca lebih banyak
+   sekaligus menandakan halaman sudah tidak di posisi awal. */
+.nav-inner {
+  transition: height 0.3s var(--ease);
+}
+.nav.is-stuck .nav-inner { height: 68px; }
+.brand-mark,
+.brand-mark-static,
+.brand-word { transition: height 0.3s var(--ease); }
+.nav.is-stuck .brand-mark { height: 34px; }
+.nav.is-stuck .brand-word { height: 21px; }
+
+/* Judul serif tersingkap dari balik topeng, bukan sekadar memudar.
+   Yang bergerak adalah isi di dalam pembungkus, bukan elemen judulnya.
+   Kalau judulnya sendiri yang dipotong, IntersectionObserver membaca
+   area terlihatnya nol dan kelas pembuka tidak pernah terpasang.
+   Padding bawah menyediakan ruang untuk huruf berekor seperti g dan y. */
+.js [data-reveal].reveal-mask {
+  opacity: 1;
+  transform: none;
+  overflow: hidden;
+  /* Serif ini berekor dalam. Padding memberi ruang supaya huruf g, y, dan p
+     tidak terpotong topeng, lalu margin negatif mengembalikan jarak aslinya
+     agar irama antar elemen tidak bergeser. */
+  padding-bottom: 0.24em;
+  margin-bottom: -0.24em;
+}
+.js .reveal-mask > span {
+  display: block;
+  transform: translateY(106%);
+  transition: transform 0.95s var(--ease);
+}
+.js .reveal-mask.is-in > span { transform: none; }
+
 /* ----------------------------------------------------- Responsive -- */
 
 @media (max-width: 1024px) {
@@ -982,5 +1047,9 @@ body.is-ready .hero-figure { animation: heroIn 0.95s var(--ease) 0.14s both; }
   .js [data-reveal],
   .js .hero-copy > *,
   .js .hero-figure { opacity: 1; transform: none; }
+  .js [data-reveal].reveal-mask { clip-path: none; }
   .about-figure img { transform: none; }
+  .js .nav-brand .brand-mark,
+  .js .nav-brand .brand-word { opacity: 1; }
+  .js .reveal-mask > span { transform: none; }
 }
