@@ -1,150 +1,201 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Preloader
-  const preloader = document.getElementById('preloader');
-  window.addEventListener('load', () => {
-    setTimeout(() => preloader && preloader.classList.add('hide'), 300);
-  });
+  /* ---------------------------------------------------------- Theme -- */
 
-  // Navbar scroll state + scroll progress bar
-  const navbar = document.querySelector('.navbar');
-  const progressBar = document.querySelector('.scroll-progress span');
-  const onScroll = () => {
-    if (window.scrollY > 12) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('theme-toggle');
 
-    const backTop = document.querySelector('.back-top');
-    if (backTop) backTop.classList.toggle('show', window.scrollY > 480);
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const currentTheme = () =>
+    root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
 
-    if (progressBar) {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-      progressBar.style.width = pct + '%';
-    }
+  const paintToggle = () => {
+    if (!themeToggle) return;
+    const dark = currentTheme() === 'dark';
+    const icon = themeToggle.querySelector('i');
+    if (icon) icon.className = dark ? 'fa-regular fa-sun' : 'fa-regular fa-moon';
+    themeToggle.setAttribute(
+      'aria-label',
+      dark ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'
+    );
   };
-  document.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
-  // Nav scrollspy: highlight the link for the section currently in view
-  const sections = document.querySelectorAll('section[id]');
-  const navLinkByHash = new Map();
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
-    navLinkByHash.set(a.getAttribute('href'), a);
-  });
-  if ('IntersectionObserver' in window && sections.length && navLinkByHash.size) {
-    const spyIo = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const link = navLinkByHash.get('#' + entry.target.id);
-        if (!link) return;
-        if (entry.isIntersecting) {
-          navLinkByHash.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-    sections.forEach(s => spyIo.observe(s));
+  paintToggle();
+  systemDark.addEventListener('change', paintToggle);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('sh-theme', next); } catch (e) {}
+      paintToggle();
+    });
   }
 
-  // Mobile menu toggle
-  const navToggle = document.querySelector('.nav-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  if (navToggle && mobileMenu) {
+  /* ------------------------------------------- Navbar state, no scroll -- */
+
+  const nav = document.getElementById('nav');
+  if (nav && 'IntersectionObserver' in window) {
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;height:1px;width:1px;';
+    document.body.prepend(sentinel);
+
+    new IntersectionObserver(
+      ([entry]) => nav.classList.toggle('is-stuck', !entry.isIntersecting),
+      { threshold: 0 }
+    ).observe(sentinel);
+  }
+
+  /* -------------------------------------------------------- Mobile menu -- */
+
+  const navToggle = document.getElementById('nav-toggle');
+  const navPanel = document.getElementById('nav-panel');
+
+  const closeMenu = () => {
+    if (!navToggle || !navPanel) return;
+    navPanel.hidden = true;
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Buka menu navigasi');
+  };
+
+  if (navToggle && navPanel) {
     navToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
+      const open = navPanel.hidden;
+      navPanel.hidden = !open;
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Tutup menu navigasi' : 'Buka menu navigasi');
     });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    });
+
+    navPanel.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   }
 
-  // Back to top
-  const backTop = document.querySelector('.back-top');
-  if (backTop) {
-    backTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+  /* ------------------------------------------------------ Nav scrollspy -- */
 
-  // Scroll reveal, staggered per group of siblings so grids/lists cascade in
-  const revealEls = document.querySelectorAll('[data-reveal]');
-  if (!prefersReducedMotion) {
-    const staggerCounts = new Map();
-    revealEls.forEach(el => {
-      const parent = el.parentElement;
-      const idx = staggerCounts.get(parent) || 0;
-      staggerCounts.set(parent, idx + 1);
-      el.style.transitionDelay = Math.min(idx * 70, 420) + 'ms';
-    });
-  }
-  if ('IntersectionObserver' in window && !prefersReducedMotion) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('in'));
-  }
+  const linksByHash = new Map();
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach((a) => {
+    linksByHash.set(a.getAttribute('href'), a);
+  });
 
-  // Animated counters for statistic numbers
-  const countEls = document.querySelectorAll('[data-count-to]');
-  if (countEls.length) {
-    const animateCount = (el) => {
-      const target = parseInt(el.getAttribute('data-count-to'), 10);
-      if (isNaN(target)) return;
-      if (prefersReducedMotion) { el.textContent = target; return; }
-      const duration = 900;
-      const start = performance.now();
-      const tick = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(eased * target);
-        if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = target;
-      };
-      requestAnimationFrame(tick);
-    };
-    if ('IntersectionObserver' in window && !prefersReducedMotion) {
-      const countIo = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateCount(entry.target);
-            countIo.unobserve(entry.target);
-          }
+  const sections = document.querySelectorAll('section[id]');
+  if ('IntersectionObserver' in window && sections.length && linksByHash.size) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const link = linksByHash.get('#' + entry.target.id);
+          if (!link || !entry.isIntersecting) return;
+          linksByHash.forEach((l) => l.classList.remove('is-active'));
+          link.classList.add('is-active');
         });
-      }, { threshold: 0.6 });
-      countEls.forEach(el => countIo.observe(el));
-    }
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    );
+    sections.forEach((s) => spy.observe(s));
   }
 
-  // Contact form -> WhatsApp handoff
-  const form = document.getElementById('contact-form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const name = data.get('name') || '';
-      const company = data.get('company') || '';
-      const phone = data.get('phone') || '';
-      const service = data.get('service') || '';
-      const message = data.get('message') || '';
+  /* ------------------------------------------------- Reveal on enter -- */
 
-      const text =
-        `Assalamu'alaikum, saya ingin konsultasi sertifikasi halal.\n` +
-        `Nama: ${name}\n` +
-        `Perusahaan: ${company}\n` +
-        `No. HP: ${phone}\n` +
-        `Layanan: ${service}\n` +
-        `Pesan: ${message}`;
+  const revealEls = document.querySelectorAll('[data-reveal]');
 
-      const waNumber = '6281343640048';
-      window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
-      form.reset();
+  if (!('IntersectionObserver' in window) || reduceMotion) {
+    revealEls.forEach((el) => el.classList.add('is-in'));
+  } else {
+    const stagger = new Map();
+    revealEls.forEach((el) => {
+      const parent = el.parentElement;
+      const index = stagger.get(parent) || 0;
+      stagger.set(parent, index + 1);
+      el.style.transitionDelay = Math.min(index * 60, 300) + 'ms';
     });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+    revealEls.forEach((el) => io.observe(el));
   }
+
+  /* ------------------------------------------ Contact form to WhatsApp -- */
+
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const submitBtn = document.getElementById('form-submit');
+  const status = document.getElementById('form-status');
+
+  const setFieldError = (input, show) => {
+    const field = input.closest('.field');
+    const error = field && field.querySelector('.field-error');
+    if (!field) return;
+    if (show) field.setAttribute('data-invalid', ''); else field.removeAttribute('data-invalid');
+    if (error) error.hidden = !show;
+    input.setAttribute('aria-invalid', String(show));
+  };
+
+  form.querySelectorAll('input[required]').forEach((input) => {
+    input.addEventListener('input', () => {
+      if (input.value.trim()) setFieldError(input, false);
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const required = [...form.querySelectorAll('input[required]')];
+    let firstInvalid = null;
+
+    required.forEach((input) => {
+      const empty = !input.value.trim();
+      setFieldError(input, empty);
+      if (empty && !firstInvalid) firstInvalid = input;
+    });
+
+    if (firstInvalid) {
+      if (status) status.textContent = '';
+      firstInvalid.focus();
+      return;
+    }
+
+    const data = new FormData(form);
+    const value = (key) => String(data.get(key) || '').trim();
+
+    const lines = [
+      "Assalamu'alaikum, saya ingin konsultasi sertifikasi halal.",
+      'Nama: ' + value('name'),
+      'Perusahaan: ' + (value('company') || '-'),
+      'No. HP: ' + value('phone'),
+      'Layanan: ' + value('service'),
+      'Pesan: ' + (value('message') || '-')
+    ];
+
+    if (submitBtn) {
+      submitBtn.setAttribute('data-busy', '');
+      submitBtn.textContent = 'Membuka WhatsApp';
+    }
+
+    const url = 'https://wa.me/6281343640048?text=' + encodeURIComponent(lines.join('\n'));
+    const opened = window.open(url, '_blank', 'noopener');
+
+    if (status) {
+      status.textContent = opened
+        ? 'Pesan Anda siap dikirim di WhatsApp.'
+        : 'Popup diblokir browser. Hubungi kami langsung di 0813-4364-0048.';
+    }
+
+    if (opened) form.reset();
+
+    window.setTimeout(() => {
+      if (!submitBtn) return;
+      submitBtn.removeAttribute('data-busy');
+      submitBtn.textContent = 'Kirim via WhatsApp';
+    }, 1200);
+  });
 });
