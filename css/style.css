@@ -185,7 +185,14 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 
 .section { padding-block: var(--gap-section); }
-.section-alt { background: var(--surface); }
+
+/* Seksi bernada abu diberi sapuan hijau brand yang sangat tipis supaya
+   bidangnya tidak terbaca rata mati. */
+.section-alt {
+  background:
+    radial-gradient(120% 80% at 85% 0%, var(--accent-tint), transparent 60%),
+    var(--surface);
+}
 
 .section-head {
   max-width: 640px;
@@ -490,7 +497,8 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 .bento-cell:hover {
   border-color: var(--accent-line);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .cell-body { display: grid; gap: 10px; }
@@ -508,7 +516,22 @@ a[href^="tel:"] { white-space: nowrap; }
   grid-row: span 2;
   min-height: 400px;
   justify-content: space-between;
+  position: relative;
 }
+/* Sorot lembut di belakang gambar Manual SJPH supaya bendanya punya
+   kedalaman dan tidak mengambang di bidang putih. */
+.cell-feature::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14%;
+  width: 78%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--accent-tint) 0%, transparent 62%);
+  pointer-events: none;
+}
+.cell-feature > * { position: relative; z-index: 1; }
 .cell-art {
   width: min(66%, 248px);
   margin: 20px auto -24px;
@@ -557,22 +580,73 @@ a[href^="tel:"] { white-space: nowrap; }
   max-width: 38ch;
 }
 
-.process-list { display: grid; }
-.process-list li {
+/* Rel vertikal di kiri daftar tahap. Bagian terisi tumbuh mengikuti
+   tahap yang sudah dilewati, jadi gerakannya menyampaikan kemajuan. */
+.process-list {
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 20px;
+  position: relative;
+  padding-left: 30px;
+}
+.process-list::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--line);
+}
+.process-list::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  width: 2px;
+  height: calc(var(--progress, 0) * (100% - 12px));
+  background: var(--accent);
+  transition: height 0.5s var(--ease);
+}
+
+.process-list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 18px;
   padding-block: 24px;
   border-top: 1px solid var(--line);
 }
 .process-list li:first-child { border-top: none; padding-top: 0; }
+
+/* Titik penanda tahap di atas rel */
+.process-list li::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 30px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  transition: border-color 0.4s var(--ease), background-color 0.4s var(--ease),
+              transform 0.4s var(--ease);
+}
+.process-list li:first-child::before { top: 6px; }
+.process-list li.is-active::before {
+  border-color: var(--accent);
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
 .step-num {
   font-size: 0.8125rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: var(--accent);
+  color: var(--ink-3);
   padding-top: 3px;
+  transition: color 0.4s var(--ease);
 }
+.process-list li.is-active .step-num { color: var(--accent); }
 .process-list h3 { margin-bottom: 6px; }
 .process-list p {
   font-size: 0.9375rem;
@@ -830,12 +904,43 @@ a[href^="tel:"] { white-space: nowrap; }
 
 /* --------------------------------------------------------- Reveal -- */
 
-[data-reveal] {
+/* Semua keadaan tersembunyi dikunci di balik penanda js. Kalau JavaScript
+   gagal dimuat, penanda tidak ada dan halaman tampil utuh tanpa animasi. */
+.js [data-reveal] {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
-[data-reveal].is-in { opacity: 1; transform: none; }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Foto masuk dengan skala menyusut halus, bukan sekadar naik, supaya
+   terasa mendarat di tempatnya. */
+.hero-figure,
+.about-figure { overflow: hidden; }
+.hero-figure img,
+.about-figure img {
+  transform: scale(1.06);
+  transition: transform 1.2s var(--ease);
+}
+.about-figure.is-in img,
+body.is-ready .hero-figure img { transform: scale(1); }
+
+/* Koreografi masuk hero, dijalankan saat halaman siap dan bukan saat
+   scroll, karena hero sudah terlihat sejak awal. Hero tidak memakai
+   data-reveal supaya kedua mekanisme tidak saling menimpa. */
+.js .hero-copy > *,
+.js .hero-figure { opacity: 0; }
+
+body.is-ready .hero-copy > * { animation: heroIn 0.8s var(--ease) both; }
+body.is-ready .hero-copy > *:nth-child(1) { animation-delay: 0.06s; }
+body.is-ready .hero-copy > *:nth-child(2) { animation-delay: 0.18s; }
+body.is-ready .hero-copy > *:nth-child(3) { animation-delay: 0.3s; }
+body.is-ready .hero-figure { animation: heroIn 0.9s var(--ease) 0.12s both; }
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
 
 /* ----------------------------------------------------- Responsive -- */
 
@@ -889,5 +994,10 @@ a[href^="tel:"] { white-space: nowrap; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  [data-reveal] { opacity: 1; transform: none; }
+  .js [data-reveal],
+  .js .hero-copy > *,
+  .js .hero-figure { opacity: 1; transform: none; }
+  .hero-figure img,
+  .about-figure img { transform: none; }
+  .process-list::after { transition: none; }
 }

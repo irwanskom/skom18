@@ -29,10 +29,13 @@
 <!-- Nomor ?v= dinaikkan setiap kali CSS atau JS berubah. Nama berkasnya
      tetap, jadi tanpa ini browser pengunjung lama akan terus memakai
      salinan cache versi sebelumnya setelah unggah ulang. -->
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 
 <script>
-  // Applied before paint so a stored theme choice never flashes the other mode.
+  // Dijalankan sebelum paint, supaya tema tersimpan tidak berkedip.
+  // Penanda js dipakai CSS untuk menyembunyikan elemen yang akan dianimasikan.
+  // Tanpa JS, penanda ini tidak ada dan seluruh konten tampil apa adanya.
+  document.documentElement.classList.add('js');
   try {
     var t = localStorage.getItem('sh-theme');
     if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
@@ -120,15 +123,15 @@
   <section class="hero" id="home">
     <div class="shell hero-inner">
       <div class="hero-copy">
-        <h1 data-reveal>Sentuhan personal kami, untuk kepercayaan kehalalan Anda.</h1>
-        <p class="lead" data-reveal>Pendampingan sertifikasi halal BPJPH skema reguler untuk usaha pangan, kosmetik, dan produk kimia.</p>
-        <div class="hero-actions" data-reveal>
+        <h1>Sentuhan personal kami, untuk kepercayaan kehalalan Anda.</h1>
+        <p class="lead">Pendampingan sertifikasi halal BPJPH skema reguler untuk usaha pangan, kosmetik, dan produk kimia.</p>
+        <div class="hero-actions">
           <a href="#contact" class="btn btn-primary btn-lg">Konsultasi Gratis</a>
           <a href="#services" class="btn btn-ghost btn-lg">Lihat Layanan</a>
         </div>
       </div>
 
-      <figure class="hero-figure" data-reveal>
+      <figure class="hero-figure">
         <img src="assets/team-supervisor-female.jpg"
              alt="Penyelia halal Signature Halal membawa dokumen Manual SJPH di area produksi klien"
              width="700" height="1050" fetchpriority="high" decoding="async">
@@ -432,6 +435,6 @@
   <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg>
 </a>
 
-<script src="js/main.js?v=2"></script>
+<script src="js/main.js?v=3"></script>
 </body>
 </html>

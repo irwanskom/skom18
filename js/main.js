@@ -95,6 +95,38 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach((s) => spy.observe(s));
   }
 
+  /* ------------------------------------------- Koreografi masuk hero -- */
+
+  // Ditandai lewat class supaya animasi hanya berjalan sekali saat siap,
+  // dan tidak terpicu ulang oleh perubahan tema atau layout.
+  requestAnimationFrame(() => document.body.classList.add('is-ready'));
+
+  /* ---------------------------------- Tahap aktif pada seksi Proses -- */
+
+  const steps = [...document.querySelectorAll('.process-list li')];
+  const stepList = document.querySelector('.process-list');
+
+  if (steps.length && stepList && 'IntersectionObserver' in window) {
+    const inView = new Set();
+
+    const stepObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const i = steps.indexOf(entry.target);
+          if (entry.isIntersecting) inView.add(i); else inView.delete(i);
+        });
+
+        // Titik dan garis menunjukkan hal yang sama: sejauh mana pembaca
+        // sudah sampai. Tanpa ini, garis bisa terisi melewati titik kosong.
+        const reached = inView.size ? Math.max(...inView) : -1;
+        steps.forEach((el, i) => el.classList.toggle('is-active', i <= reached));
+        stepList.style.setProperty('--progress', (reached + 1) / steps.length);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+    steps.forEach((el) => stepObserver.observe(el));
+  }
+
   /* ------------------------------------------------- Reveal on enter -- */
 
   const revealEls = document.querySelectorAll('[data-reveal]');
