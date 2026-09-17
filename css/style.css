@@ -8,6 +8,17 @@
      --r-3 16px  large figures, map, statement band
    ========================================================================== */
 
+/* Plus Jakarta Sans, variable 400 sampai 800, subset latin, di-host sendiri
+   agar tidak ada permintaan render blocking ke CDN pihak ketiga.
+   SIL Open Font License 1.1, teks lisensi di assets/fonts/OFL.txt */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('../assets/fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+}
+
 :root {
   color-scheme: light dark;
 
@@ -143,6 +154,11 @@ li { list-style: none; }
 button { font: inherit; color: inherit; }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* Sprite ikon disembunyikan tanpa display none, supaya referensi use tetap
+   dirender di semua browser. */
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon { width: 18px; height: 18px; fill: currentColor; flex: none; }
 
 /* Nomor telepon tetap ASCII agar bisa disalin ke dialer, dan dijaga
    supaya tidak terpotong di tengah saat baris membungkus. */
@@ -793,11 +809,11 @@ a[href^="tel:"] { white-space: nowrap; }
   background: var(--accent);
   color: var(--accent-ink);
   border-radius: 50%;
-  font-size: 1.35rem;
   box-shadow: var(--shadow-md);
   transition: transform 0.2s var(--ease), background-color 0.2s var(--ease);
 }
 .wa-float:hover { background: var(--accent-hover); transform: translateY(-2px); }
+.wa-float .icon { width: 26px; height: 26px; }
 
 /* The logo wordmark is deep green, so it needs a small lift on dark
    surfaces. The mark itself is unchanged. */

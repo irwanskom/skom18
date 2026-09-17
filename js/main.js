@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const paintToggle = () => {
     if (!themeToggle) return;
     const dark = currentTheme() === 'dark';
-    const icon = themeToggle.querySelector('i');
-    if (icon) icon.className = dark ? 'fa-regular fa-sun' : 'fa-regular fa-moon';
+    const icon = themeToggle.querySelector('use');
+    if (icon) icon.setAttribute('href', dark ? '#i-sun' : '#i-moon');
     themeToggle.setAttribute(
       'aria-label',
       dark ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'
