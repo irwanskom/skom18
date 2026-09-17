@@ -1,7 +1,7 @@
 /**
  * Audit aksesibilitas dengan axe-core.
- * Halaman dipindai pada mode terang dan gelap, ukuran desktop dan mobile,
- * karena kontras dan tata letak berbeda di tiap kombinasi.
+ * Situs bertema tunggal (gelap), jadi yang dipindai adalah ukuran layar:
+ * desktop dan mobile, karena tata letaknya berbeda.
  */
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
@@ -10,10 +10,9 @@ import { startServer } from './server.mjs';
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 
 const VIEWS = [
-  { name: 'desktop terang', width: 1440, height: 900, colorScheme: 'light' },
-  { name: 'desktop gelap', width: 1440, height: 900, colorScheme: 'dark' },
-  { name: 'mobile terang', width: 390, height: 844, colorScheme: 'light' },
-  { name: 'mobile gelap', width: 390, height: 844, colorScheme: 'dark' },
+  { name: 'desktop', width: 1440, height: 900 },
+  { name: 'tablet', width: 834, height: 1112 },
+  { name: 'mobile', width: 390, height: 844 },
 ];
 
 const server = await startServer();
@@ -27,7 +26,6 @@ try {
   for (const view of VIEWS) {
     const context = await browser.newContext({
       viewport: { width: view.width, height: view.height },
-      colorScheme: view.colorScheme,
     });
     const page = await context.newPage();
     await page.goto(server.url, { waitUntil: 'load' });

@@ -1,38 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------------------------------------------------- Theme -- */
-
-  const root = document.documentElement;
-  const themeToggle = document.getElementById('theme-toggle');
-
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-  const currentTheme = () =>
-    root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
-
-  const paintToggle = () => {
-    if (!themeToggle) return;
-    const dark = currentTheme() === 'dark';
-    const icon = themeToggle.querySelector('use');
-    if (icon) icon.setAttribute('href', dark ? '#i-sun' : '#i-moon');
-    themeToggle.setAttribute(
-      'aria-label',
-      dark ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'
-    );
-  };
-
-  paintToggle();
-  systemDark.addEventListener('change', paintToggle);
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const next = currentTheme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('sh-theme', next); } catch (e) {}
-      paintToggle();
-    });
-  }
-
   /* ------------------------------------------- Navbar state, no scroll -- */
 
   const nav = document.getElementById('nav');
@@ -98,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------- Koreografi masuk hero -- */
 
   // Ditandai lewat class supaya animasi hanya berjalan sekali saat siap,
-  // dan tidak terpicu ulang oleh perubahan tema atau layout.
+  // dan tidak terpicu ulang oleh perubahan layout.
   requestAnimationFrame(() => document.body.classList.add('is-ready'));
 
   /* ---------------------------------- Tahap aktif pada seksi Proses -- */
