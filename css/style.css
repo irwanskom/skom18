@@ -1,9 +1,12 @@
 /* ==========================================================================
    Signature Halal
-   Theme: Authkit style reference. Midnight canvas, frosted-glass surfaces,
-   blueprint grid, luminous blue-white type, one violet accent reserved for
-   the primary conversion CTA. Dark-first by design; the brand reference
-   locks a single theme, so there is no light-mode variant.
+   Structure follows the Authkit style reference: near-black canvas,
+   frosted-glass surfaces, a blueprint grid, hairline borders and inset-glow
+   elevation. Every colour is derived from the logo instead: the frost is
+   tinted green rather than blue, and the single chromatic accent is the
+   logo's emerald, reserved for the primary conversion CTA. The logo's gold
+   stays in the mark itself and is never used as a UI colour.
+   Dark-first by design; there is no light-mode variant.
    ========================================================================== */
 
 /* Self-hosted latin subsets, variable weight axis. All three are OFL. */
@@ -31,43 +34,47 @@
 
 :root {
   /* Surfaces */
-  --canvas: #05060f;
-  --surface-glass: rgba(186, 214, 247, 0.03);
-  --surface-glass-2: rgba(186, 214, 247, 0.06);
-  --surface-glass-3: rgba(199, 211, 234, 0.12);
-  --surface-deep: rgba(5, 6, 15, 0.97);
+  --canvas: #07100c;
+  --surface-glass: rgba(186, 226, 203, 0.03);
+  --surface-glass-2: rgba(186, 226, 203, 0.06);
+  --surface-glass-3: rgba(200, 226, 210, 0.12);
+  --surface-deep: rgba(7, 16, 12, 0.97);
 
   /* Text, brightest to quietest */
-  --text-head: #d8ecf8;
-  --text-body: #d1e4fa;
-  --text-muted: #c7d3ea;
-  --text-helper: #9da7ba;
+  --text-head: #e8f3ec;
+  --text-body: #d6e6dc;
+  --text-muted: #b9cec2;
+  --text-helper: #8ba295;
   --white: #ffffff;
 
-  /* The single chromatic accent. Primary CTA only, never decorative. */
-  --accent: #663af3;
-  --accent-hover: #7850f5;
+  /* The logo's emerald. Primary CTA only, never decorative. It carries dark
+     ink rather than white: at this lightness only dark text clears AA. */
+  --accent: #2fae6d;
+  --accent-hover: #3cc07b;
+  --accent-ink: #05100b;
 
   /* Hairlines. The system has no solid borders. */
-  --hairline: rgba(186, 215, 247, 0.12);
-  --hairline-soft: rgba(186, 214, 247, 0.06);
-  --hairline-strong: rgba(186, 214, 247, 0.24);
+  --hairline: rgba(186, 226, 203, 0.12);
+  --hairline-soft: rgba(186, 226, 203, 0.06);
+  --hairline-strong: rgba(186, 226, 203, 0.24);
 
-  --grad-skywash: linear-gradient(180deg, #d8ecf8 0%, #98c0ef 100%);
+  /* Luminous, not chromatic: the display gradient stays desaturated so it
+     never competes with the accent. */
+  --grad-skywash: linear-gradient(180deg, #eaf6ef 0%, #8fc2a8 100%);
   --grad-hairline: linear-gradient(90deg, transparent, var(--hairline), transparent);
 
   /* Elevation is inset frost plus a soft halo, never a plain drop shadow. */
   --elev-card:
-    inset 0 1px 1px rgba(199, 211, 234, 0.12),
-    inset 0 24px 48px rgba(199, 211, 234, 0.05),
-    0 24px 32px rgba(6, 6, 14, 0.7);
+    inset 0 1px 1px rgba(200, 226, 210, 0.12),
+    inset 0 24px 48px rgba(200, 226, 210, 0.05),
+    0 24px 32px rgba(4, 10, 7, 0.7);
   --elev-panel:
-    inset 0 1px 1px rgba(216, 236, 248, 0.2),
-    inset 0 24px 48px rgba(168, 216, 245, 0.06),
+    inset 0 1px 1px rgba(220, 242, 229, 0.2),
+    inset 0 24px 48px rgba(168, 224, 191, 0.06),
     0 16px 32px rgba(0, 0, 0, 0.3);
   --ring: inset 0 0 0 1px var(--hairline);
   --ring-strong: inset 0 0 0 1px var(--hairline-strong);
-  --glow: 0 0 6px rgba(186, 207, 247, 0.32), 0 0 12px rgba(238, 186, 247, 0.24);
+  --glow: 0 0 6px rgba(186, 226, 203, 0.32), 0 0 12px rgba(205, 235, 190, 0.24);
 
   /* Radius scale. Buttons pill, cards 16, inputs and badges 6, tiles round. */
   --r-card: 16px;
@@ -130,9 +137,9 @@ body {
 .bg-halo {
   background: conic-gradient(at 50% -5%,
     transparent 45%,
-    rgba(124, 145, 182, 0.3) 49%,
-    rgba(124, 145, 182, 0.5) 50%,
-    rgba(124, 145, 182, 0.3) 51%,
+    rgba(118, 160, 136, 0.3) 49%,
+    rgba(118, 160, 136, 0.5) 50%,
+    rgba(118, 160, 136, 0.3) 51%,
     transparent 55%);
   opacity: 0.45;
 }
@@ -257,12 +264,13 @@ strong { color: var(--text-body); font-weight: 600; }
 /* The only chromatic surface on the page. */
 .btn-accent {
   background: var(--accent);
-  color: var(--white);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 28px -12px rgba(102, 58, 243, 0.8);
+  color: var(--accent-ink);
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 28px -12px rgba(47, 174, 109, 0.75);
 }
 .btn-accent:hover {
   background: var(--accent-hover);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 14px 34px -12px rgba(102, 58, 243, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 14px 34px -12px rgba(47, 174, 109, 0.85);
 }
 
 .btn-ghost {
@@ -351,13 +359,13 @@ strong { color: var(--text-body); font-weight: 600; }
   position: sticky;
   top: 0;
   z-index: 500;
-  background: rgba(5, 6, 15, 0.72);
+  background: rgba(7, 16, 12, 0.72);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   box-shadow: inset 0 -1px 0 var(--hairline);
   transition: background .3s var(--ease);
 }
-.navbar.scrolled { background: rgba(5, 6, 15, 0.9); }
+.navbar.scrolled { background: rgba(7, 16, 12, 0.9); }
 .nav-inner {
   display: flex;
   align-items: center;
@@ -475,7 +483,7 @@ strong { color: var(--text-body); font-weight: 600; }
   inset: -40px;
   z-index: -1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 216, 245, 0.1), transparent 65%);
+  background: radial-gradient(circle, rgba(168, 224, 191, 0.1), transparent 65%);
   pointer-events: none;
 }
 .hero-panel img {
@@ -565,7 +573,7 @@ strong { color: var(--text-body); font-weight: 600; }
   padding: 6px 14px;
   border-radius: var(--r-badge);
   background: var(--surface-glass-3);
-  box-shadow: inset 0 1px 1px rgba(216, 236, 248, 0.14);
+  box-shadow: inset 0 1px 1px rgba(220, 242, 229, 0.14);
 }
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
@@ -577,7 +585,7 @@ strong { color: var(--text-body); font-weight: 600; }
 .section-tight { padding: 88px 0; }
 .section-flush { padding-top: 0; }
 .section.on-dark {
-  background: rgba(186, 214, 247, 0.02);
+  background: rgba(186, 226, 203, 0.02);
   box-shadow: inset 0 1px 0 var(--hairline), inset 0 -1px 0 var(--hairline);
 }
 .section-head {
@@ -723,11 +731,11 @@ strong { color: var(--text-body); font-weight: 600; }
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 140% at 0% 0%, rgba(168, 216, 245, 0.08), transparent 60%);
+  background: radial-gradient(120% 140% at 0% 0%, rgba(168, 224, 191, 0.08), transparent 60%);
   pointer-events: none;
 }
 .service-card.is-full::before {
-  background: linear-gradient(90deg, rgba(168, 216, 245, 0.08), transparent 55%);
+  background: linear-gradient(90deg, rgba(168, 224, 191, 0.08), transparent 55%);
 }
 .service-card > * { position: relative; }
 .service-icon {
@@ -800,7 +808,7 @@ strong { color: var(--text-body); font-weight: 600; }
   font-weight: 500;
   font-size: 72px;
   line-height: 1;
-  color: rgba(186, 215, 247, 0.05);
+  color: rgba(186, 226, 203, 0.05);
   pointer-events: none;
 }
 .process-num {
@@ -994,7 +1002,7 @@ strong { color: var(--text-body); font-weight: 600; }
   inset: 0;
   background: conic-gradient(at 80% -20%,
     transparent 45%,
-    rgba(124, 145, 182, 0.22) 50%,
+    rgba(118, 160, 136, 0.22) 50%,
     transparent 55%);
   pointer-events: none;
 }
@@ -1097,7 +1105,7 @@ strong { color: var(--text-body); font-weight: 600; }
   padding: 12px 14px;
   border-radius: var(--r-input);
   border: none;
-  background: rgba(199, 211, 234, 0.06);
+  background: rgba(200, 226, 210, 0.06);
   box-shadow: var(--ring);
   color: var(--white);
   font-family: inherit;
@@ -1108,7 +1116,7 @@ strong { color: var(--text-body); font-weight: 600; }
 .field textarea::placeholder { color: var(--text-helper); }
 .field select { appearance: none; }
 .field select option {
-  background: #11131f;
+  background: #0d1a13;
   color: var(--white);
 }
 .field textarea {
@@ -1119,7 +1127,7 @@ strong { color: var(--text-body); font-weight: 600; }
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  box-shadow: var(--ring-strong), 0 0 0 3px rgba(186, 214, 247, 0.1);
+  box-shadow: var(--ring-strong), 0 0 0 3px rgba(186, 226, 203, 0.1);
 }
 .form-note {
   margin: 14px 0 0;
@@ -1222,7 +1230,9 @@ strong { color: var(--text-body); font-weight: 600; }
   visibility: visible;
   transform: translateY(0);
 }
-/* WhatsApp keeps its own platform colour: it is a brand mark, not a UI accent. */
+/* Carries the accent rather than WhatsApp's own green: it opens the same
+   conversation as the primary CTA, so it belongs to the same colour, and a
+   third green would only muddy the palette. */
 .wa-float {
   position: fixed;
   left: 24px;
@@ -1231,14 +1241,18 @@ strong { color: var(--text-body); font-weight: 600; }
   width: 54px;
   height: 54px;
   border-radius: var(--r-circle);
-  background: #25d366;
-  color: #04240f;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.5);
-  transition: transform .25s var(--ease);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 12px 30px -8px rgba(47, 174, 109, 0.6);
+  transition: transform .25s var(--ease), background .25s var(--ease);
+}
+.wa-float:hover {
+  background: var(--accent-hover);
+  transform: translateY(-3px);
 }
 .wa-float:hover { transform: translateY(-3px); }
 
@@ -1270,7 +1284,7 @@ strong { color: var(--text-body); font-weight: 600; }
 
 /* Frosted surfaces need a solid fallback when transparency is reduced. */
 @media (prefers-reduced-transparency: reduce) {
-  .navbar { background: #080a15; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .navbar { background: #0a1710; backdrop-filter: none; -webkit-backdrop-filter: none; }
   .bg-grid, .bg-halo { display: none; }
 }
 
