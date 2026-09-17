@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signature Halal | Konsultan Pendamping Sertifikasi Halal</title>
-<meta name="description" content="Signature Halal — sentuhan personal kami, untuk kepercayaan kehalalan Anda. Konsultan pendamping sertifikasi halal BPJPH skema reguler untuk sektor pangan, kosmetik, dan produk kimia.">
+<meta name="description" content="Signature Halal, sentuhan personal kami untuk kepercayaan kehalalan Anda. Konsultan pendamping sertifikasi halal BPJPH skema reguler untuk sektor pangan, kosmetik, dan produk kimia.">
 <link rel="canonical" href="https://www.signaturehalal.id/">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon.png" type="image/png" sizes="180x180">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<meta name="theme-color" content="#0b0d0c">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Signature Halal">
@@ -23,12 +26,18 @@
 <meta name="twitter:description" content="Sentuhan personal kami, untuk kepercayaan kehalalan Anda. Pendampingan sertifikasi halal BPJPH skema reguler.">
 <meta name="twitter:image" content="https://www.signaturehalal.id/assets/og-image.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin.woff2" crossorigin>
+<link rel="preload" as="image" href="assets/team-duo-hero-1350.webp" imagesrcset="assets/team-duo-hero-760.webp 760w, assets/team-duo-hero-1350.webp 1350w" imagesizes="(max-width: 900px) 92vw, 48vw" fetchpriority="high">
+<!-- Nomor ?v= dinaikkan setiap kali CSS atau JS berubah. Nama berkasnya
+     tetap, jadi tanpa ini browser pengunjung lama akan terus memakai
+     salinan cache versi sebelumnya setelah unggah ulang. -->
+<link rel="stylesheet" href="css/style.css?v=12">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css">
+<script>
+  // Penanda js dipakai CSS untuk menyembunyikan elemen yang akan dianimasikan.
+  // Tanpa JS, penanda ini tidak ada dan seluruh konten tampil apa adanya.
+  document.documentElement.classList.add('js');
+</script>
 
 <script type="application/ld+json">
 {
@@ -38,7 +47,7 @@
   "description": "Konsultan pendamping sertifikasi halal BPJPH skema reguler untuk sektor pangan, kosmetik, dan produk kimia.",
   "url": "https://www.signaturehalal.id/",
   "telephone": "+62-813-4364-0048",
-  "email": "signaturehalal@gmail.com",
+  "email": "admin@signaturehalal.id",
   "image": "https://www.signaturehalal.id/assets/og-image.png",
   "address": {
     "@type": "PostalAddress",
@@ -57,31 +66,23 @@
 </head>
 <body>
 
-<div class="scroll-progress"><span></span></div>
-<div id="preloader"><img src="assets/logo-vertical.png" alt="" class="loader-mark"></div>
+<!-- Ikon dari Phosphor Icons (MIT), hanya empat glyph yang benar benar
+     dipakai, disisipkan inline agar tidak ada permintaan ke CDN. -->
+<svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-instagram" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM176,20H80A60.07,60.07,0,0,0,20,80v96a60.07,60.07,0,0,0,60,60h96a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,176,20Zm36,156a36,36,0,0,1-36,36H80a36,36,0,0,1-36-36V80A36,36,0,0,1,80,44h96a36,36,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 256 256"><path d="M187.3,159.06A36.09,36.09,0,0,1,152,188a84.09,84.09,0,0,1-84-84A36.09,36.09,0,0,1,96.94,68.7,12,12,0,0,1,110,75.1l11.48,23a12,12,0,0,1-.75,12l-8.52,12.78a44.56,44.56,0,0,0,20.91,20.91l12.78-8.52a12,12,0,0,1,12-.75l23,11.48A12,12,0,0,1,187.3,159.06ZM236,128A108,108,0,0,1,78.77,224.15L46.34,235A20,20,0,0,1,21,209.66l10.81-32.43A108,108,0,1,1,236,128Zm-24,0A84,84,0,1,0,55.27,170.06a12,12,0,0,1,1,9.81l-9.93,29.79,29.79-9.93a12.1,12.1,0,0,1,3.8-.62,12,12,0,0,1,6,1.62A84,84,0,0,0,212,128Z"/></symbol>
+</svg>
 
-<!-- Topbar -->
-<div class="topbar">
-  <div class="container">
-    <div>
-      <span class="topbar-item"><i class="fa-solid fa-phone"></i> 0813-4364-0048</span>
-      <span class="topbar-item"><i class="fa-solid fa-envelope"></i> signaturehalal@gmail.com</span>
-    </div>
-    <div class="topbar-socials">
-      <a href="https://instagram.com/signaturehalal" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://wa.me/6281343640048" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-  </div>
-</div>
+<a class="skip-link" href="#main">Langsung ke konten utama</a>
 
-<!-- Navbar -->
-<header class="navbar">
-  <div class="container nav-inner">
-    <a href="#home" class="brand">
-      <img src="assets/logo-horizontal.png" alt="Signature Halal">
+<header class="nav" id="nav">
+  <div class="shell nav-inner">
+    <a href="#home" class="nav-brand" aria-label="Signature Halal, kembali ke beranda">
+      <img class="brand-mark" src="assets/logo-mark.webp" alt="" width="115" height="200">
+      <img class="brand-word" src="assets/logo-wordmark.webp" alt="Signature Halal" width="260" height="163">
     </a>
 
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Navigasi utama">
       <a href="#home">Beranda</a>
       <a href="#about">Tentang Kami</a>
       <a href="#services">Layanan</a>
@@ -90,458 +91,359 @@
       <a href="#contact">Kontak</a>
     </nav>
 
-    <div class="nav-cta">
-      <a href="#contact" class="btn btn-outline">Hubungi Kami</a>
-      <a href="#contact" class="btn btn-gold">Konsultasi Gratis</a>
-      <button class="nav-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-primary nav-cta">Konsultasi Gratis</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Buka menu navigasi">
+        <span></span><span></span>
       </button>
     </div>
   </div>
-  <div class="mobile-menu">
+
+  <div class="nav-panel" id="nav-panel" hidden>
     <a href="#home">Beranda</a>
     <a href="#about">Tentang Kami</a>
     <a href="#services">Layanan</a>
     <a href="#process">Proses</a>
     <a href="#regulasi">Regulasi</a>
     <a href="#contact">Kontak</a>
-    <a href="#contact" class="btn btn-gold" style="margin-top:14px;text-align:center;">Konsultasi Gratis</a>
+    <a href="#contact" class="btn btn-primary">Konsultasi Gratis</a>
   </div>
 </header>
 
-<!-- Hero -->
-<section class="hero" id="home">
-  <div class="hero-orn"></div>
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow" data-reveal>Konsultan Pendamping Sertifikasi Halal</div>
-      <h1 data-reveal>Sentuhan Personal Kami, untuk <span class="gold-text">Kepercayaan Kehalalan</span> Anda</h1>
-      <p class="hero-sub" data-reveal>Signature Halal mendampingi pelaku usaha meraih sertifikasi halal BPJPH skema reguler — dari persiapan dokumen, pengajuan, audit LPH, hingga sertifikat terbit, dengan pendekatan personal sesuai skala usaha Anda.</p>
-      <div class="hero-actions" data-reveal>
-        <a href="#contact" class="btn btn-gold">Konsultasi Gratis <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="#services" class="btn btn-outline">Lihat Layanan Kami</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat" data-reveal><i class="fa-solid fa-list-check"></i><div><b data-count-to="8">8</b><span>Tahapan Pendampingan</span></div></div>
-        <div class="stat" data-reveal><i class="fa-solid fa-industry"></i><div><b data-count-to="3">3</b><span>Sektor: Pangan, Kosmetik, Kimia</span></div></div>
-        <div class="stat" data-reveal><i class="fa-solid fa-handshake"></i><div><b>Personal</b><span>Bukan Sekadar Transaksional</span></div></div>
-      </div>
-    </div>
+<main id="main">
 
-    <div class="hero-visual" data-reveal>
-      <div class="hero-medallion">
-        <img src="assets/manual-sjph-mockup.png" alt="Manual SJPH Signature Halal">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Trust bar -->
-<div class="trustbar">
-  <div class="container">
-    <span class="trustbar-label">Telah mendampingi berbagai skala usaha</span>
-  </div>
-  <div class="marquee">
-    <div class="marquee-track">
-      <div class="trust-logos">
-        <span>Dapur Produksi Skala Besar</span>
-        <span>Rumah Potong Unggas</span>
-        <span>UMKM Pangan</span>
-        <span>Kosmetik</span>
-        <span>Produk Kimia</span>
-      </div>
-      <div class="trust-logos" aria-hidden="true">
-        <span>Dapur Produksi Skala Besar</span>
-        <span>Rumah Potong Unggas</span>
-        <span>UMKM Pangan</span>
-        <span>Kosmetik</span>
-        <span>Produk Kimia</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- About -->
-<section class="section" id="about">
-  <div class="container about-grid">
-    <div data-reveal style="position:relative;">
-      <div class="about-photo">
-        <img src="assets/logo-vertical.png" alt="Signature Halal">
-        <div class="frame"></div>
-      </div>
-      <div class="about-card">
-        <b>UU 33/2014</b>
-        <span>Pendampingan sesuai regulasi Jaminan Produk Halal (JPH) yang berlaku</span>
-      </div>
-    </div>
-
-    <div class="about-copy" data-reveal>
-      <div class="eyebrow">Tentang Kami</div>
-      <h2>Mitra Pendamping Sertifikasi Halal yang Personal</h2>
-      <p>Signature Halal hadir sebagai mitra pendamping sertifikasi halal bagi pelaku usaha yang ingin memenuhi kewajiban sertifikasi halal sesuai regulasi Badan Penyelenggara Jaminan Produk Halal (BPJPH), melalui skema reguler. Kami mendampingi proses dari awal pengajuan hingga sertifikat terbit, dengan pendekatan personal yang disesuaikan dengan kondisi dan skala usaha masing-masing klien.</p>
-      <p>Kami telah mendampingi berbagai jenis usaha, mulai dari dapur produksi skala besar, rumah potong unggas, hingga UMKM pangan, kosmetik, dan produk kimia.</p>
-
-      <div class="about-points">
-        <div class="about-point">
-          <div class="chk"><i class="fa-solid fa-check"></i></div>
-          <div><strong>Pendampingan Personal</strong><span>Bukan sekadar transaksional — disesuaikan dengan kondisi dan skala usaha Anda.</span></div>
-        </div>
-        <div class="about-point">
-          <div class="chk"><i class="fa-solid fa-check"></i></div>
-          <div><strong>Pengalaman Lintas Sektor</strong><span>Pangan, kosmetik, dan produk kimia, dari UMKM hingga industri skala besar.</span></div>
-        </div>
-        <div class="about-point">
-          <div class="chk"><i class="fa-solid fa-check"></i></div>
-          <div><strong>Proses Transparan</strong><span>Dari pengajuan ke BPJPH, audit LPH, hingga sertifikat terbit.</span></div>
+  <!-- Hero: asymmetric split, copy left, real photograph right -->
+  <section class="hero" id="home">
+    <div class="shell hero-inner">
+      <div class="hero-copy">
+        <p class="kicker">Pendamping Sertifikasi Halal</p>
+        <h1>Sentuhan personal kami, untuk <span class="accent">kepercayaan</span> kehalalan Anda.</h1>
+        <p class="lead">Pendampingan sertifikasi halal BPJPH skema reguler untuk usaha pangan, kosmetik, dan produk kimia.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary btn-lg">Konsultasi Gratis</a>
+          <a href="#services" class="btn btn-ghost btn-lg">Lihat Layanan</a>
         </div>
       </div>
+
+      <figure class="hero-figure">
+        <img src="assets/team-duo-hero-1350.webp"
+             srcset="assets/team-duo-hero-760.webp 760w, assets/team-duo-hero-1350.webp 1350w"
+             sizes="(max-width: 900px) 92vw, 48vw"
+             alt="Dua penyelia halal Signature Halal mengenakan rompi seragam, membawa tablet dan dokumen Manual SJPH"
+             width="1350" height="1159" fetchpriority="high" decoding="async">
+      </figure>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Services -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="section-head center" data-reveal>
-      <div class="eyebrow">Layanan Kami</div>
-      <h2>Konsultasi &amp; Pendampingan Sertifikasi Halal</h2>
-      <p>Kami mendampingi pelaku usaha melalui seluruh tahapan sertifikasi halal skema reguler — mulai dari persiapan dokumen, pengajuan ke BPJPH, proses audit oleh Lembaga Pemeriksa Halal (LPH), hingga penerbitan sertifikat.</p>
+  <!-- Sectors served: quiet hairline band, real client categories -->
+  <section class="band" aria-label="Sektor usaha yang kami dampingi">
+    <div class="shell band-inner">
+      <p class="band-label">Telah mendampingi</p>
+      <ul class="band-list">
+        <li data-reveal>Dapur produksi skala besar</li>
+        <li data-reveal>Rumah potong unggas</li>
+        <li data-reveal>UMKM pangan</li>
+        <li data-reveal>Kosmetik</li>
+        <li data-reveal>Produk kimia</li>
+      </ul>
     </div>
+  </section>
 
-    <div class="services-grid">
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-comments"></i></div>
-        <h3>Konsultasi Awal &amp; Gap Analysis</h3>
-        <p>Diskusi kebutuhan, pengecekan kelengkapan legalitas usaha, dan identifikasi bahan/proses produksi.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
+  <!-- About: image and text split -->
+  <section class="section" id="about">
+    <div class="shell about">
+      <figure class="about-figure" data-reveal>
+        <img src="assets/team-supervisor-male.webp"
+             alt="Penyelia halal Signature Halal di lokasi produksi klien"
+             width="700" height="1050" loading="lazy" decoding="async">
+      </figure>
 
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-file-lines"></i></div>
-        <h3>Penyusunan Dokumen SJPH</h3>
-        <p>Manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir proses produksi sesuai standar BPJPH.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
+      <div class="about-copy">
+        <h2 class="reveal-mask" data-reveal><span>Mitra pendamping yang mengenal kondisi usaha Anda.</span></h2>
+        <p data-reveal>Signature Halal mendampingi pelaku usaha memenuhi kewajiban sertifikasi halal sesuai regulasi Badan Penyelenggara Jaminan Produk Halal (BPJPH) melalui skema reguler, dari awal pengajuan hingga sertifikat terbit.</p>
+        <p data-reveal>Kami telah mendampingi dapur produksi skala besar, rumah potong unggas, UMKM pangan, kosmetik, dan produk kimia. Pendekatannya kami sesuaikan dengan kondisi dan skala usaha masing masing klien.</p>
 
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-file-import"></i></div>
-        <h3>Pendaftaran ke BPJPH</h3>
-        <p>Pengajuan permohonan sertifikasi halal melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-        <h3>Pendampingan Audit LPH</h3>
-        <p>Pendampingan audit lapangan oleh LPH serta tindak lanjut atas temuan atau catatan hasil audit.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-        <h3>Pendampingan Sidang Fatwa MUI</h3>
-        <p>Pendampingan hingga penetapan status kehalalan produk melalui sidang komisi fatwa MUI.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
-
-      <div class="service-card" data-reveal>
-        <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
-        <h3>Konsultasi Multi-Sektor</h3>
-        <p>Melayani sektor pangan, kosmetik, dan produk kimia — dari UMKM hingga industri skala besar.</p>
-        <a href="#contact" class="service-link">Selengkapnya <i class="fa-solid fa-arrow-right arrow"></i></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Process -->
-<section class="section on-dark" id="process">
-  <div class="container">
-    <div class="process-head" data-reveal>
-      <div>
-        <div class="eyebrow">Cara Kerja</div>
-        <h2>Alur sertifikasi yang sederhana dan jelas.</h2>
-      </div>
-      <p>Delapan tahapan pendampingan yang kami jalankan bersama klien, dari konsultasi awal hingga sertifikat halal terbit.</p>
-    </div>
-
-    <div class="process-grid">
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">01</span>
-        <div class="process-num">01</div>
-        <h4>Konsultasi Awal</h4>
-        <p>Diskusi kebutuhan, pengecekan legalitas usaha, dan identifikasi bahan/proses produksi.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">02</span>
-        <div class="process-num">02</div>
-        <h4>Dokumen SJPH</h4>
-        <p>Penyusunan manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir produksi.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">03</span>
-        <div class="process-num">03</div>
-        <h4>Pendaftaran BPJPH</h4>
-        <p>Pengajuan permohonan melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">04</span>
-        <div class="process-num">04</div>
-        <h4>Verifikasi Dokumen</h4>
-        <p>Pengecekan kelengkapan dan kesesuaian dokumen sebelum audit lapangan dijadwalkan.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">05</span>
-        <div class="process-num">05</div>
-        <h4>Audit Lapangan</h4>
-        <p>Pemeriksaan langsung ke lokasi produksi — bahan, proses, alat, dan penyimpanan.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">06</span>
-        <div class="process-num">06</div>
-        <h4>Perbaikan Temuan</h4>
-        <p>Tindak lanjut atas temuan audit, termasuk penyediaan bukti pendukung tambahan.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">07</span>
-        <div class="process-num">07</div>
-        <h4>Sidang Fatwa MUI</h4>
-        <p>Penetapan status kehalalan produk melalui sidang komisi fatwa.</p>
-      </div>
-      <div class="process-cell" data-reveal>
-        <span class="process-watermark">08</span>
-        <div class="process-num">08</div>
-        <h4>Sertifikat Terbit</h4>
-        <p>Sertifikat halal dapat diunduh melalui SIHALAL, siap digunakan pada label produk.</p>
+        <dl class="about-points">
+          <div class="about-point" data-reveal>
+            <dt>Pendampingan personal</dt>
+            <dd>Bukan sekadar transaksional. Kami menyesuaikan pendampingan dengan kondisi usaha Anda.</dd>
+          </div>
+          <div class="about-point" data-reveal>
+            <dt>Pengalaman lintas sektor</dt>
+            <dd>Pangan, kosmetik, dan produk kimia, dari UMKM sampai industri skala besar.</dd>
+          </div>
+          <div class="about-point" data-reveal>
+            <dt>Proses transparan</dt>
+            <dd>Setiap tahap dikomunikasikan, dari pengajuan BPJPH, audit LPH, sampai sertifikat terbit.</dd>
+          </div>
+        </dl>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Industries -->
-<section class="section" style="padding-top:80px;padding-bottom:80px;">
-  <div class="container">
-    <div class="section-head center" data-reveal>
-      <div class="eyebrow">Skala Usaha yang Kami Layani</div>
-      <h2>Lintas Sektor, Satu Standar Kepercayaan</h2>
-    </div>
-    <div class="industries-grid">
-      <div class="industry-chip" data-reveal><div class="ic">🏭</div><span>Dapur Produksi Skala Besar</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">🐔</div><span>Rumah Potong Unggas</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">🍽️</div><span>UMKM Pangan</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">💄</div><span>Kosmetik</span></div>
-      <div class="industry-chip" data-reveal><div class="ic">🧪</div><span>Produk Kimia</span></div>
-    </div>
-  </div>
-</section>
+  <!-- Services: bento, six cells, varied weight -->
+  <section class="section section-alt" id="services">
+    <div class="shell">
+      <div class="section-head">
+        <p class="kicker" data-reveal>Layanan</p>
+        <h2 class="reveal-mask" data-reveal><span>Pendampingan penuh, satu pintu.</span></h2>
+        <p class="lead" data-reveal>Kami mendampingi seluruh tahapan sertifikasi halal skema reguler, dari persiapan dokumen sampai sertifikat terbit.</p>
+      </div>
 
-<!-- Why us -->
-<section class="section on-dark">
-  <div class="container why-grid">
-    <div>
-      <div class="eyebrow" data-reveal>Mengapa Signature Halal</div>
-      <h2 style="color:var(--cream);" data-reveal>Kenapa Memilih Kami</h2>
-      <div class="why-list" style="margin-top:30px;">
-        <div class="why-item" data-reveal>
-          <span class="num">01</span>
-          <div><h4>Pendampingan Personal</h4><p>Bukan sekadar transaksional — pendekatan disesuaikan dengan kondisi dan skala usaha Anda.</p></div>
-        </div>
-        <div class="why-item" data-reveal>
-          <span class="num">02</span>
-          <div><h4>Pengalaman Lintas Sektor</h4><p>Pangan, kosmetik, dan produk kimia — dari UMKM hingga industri skala besar.</p></div>
-        </div>
-        <div class="why-item" data-reveal>
-          <span class="num">03</span>
-          <div><h4>Proses Transparan</h4><p>Dari awal pengajuan hingga sertifikat terbit, setiap tahap dikomunikasikan dengan jelas.</p></div>
-        </div>
+      <div class="bento">
+        <article class="bento-cell cell-feature" data-reveal>
+          <div class="cell-body">
+            <h3>Penyusunan dokumen SJPH</h3>
+            <p>Manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir proses produksi sesuai standar BPJPH.</p>
+          </div>
+          <img class="cell-art" src="assets/manual-sjph-mockup.webp"
+               alt="Dokumen Manual Sistem Jaminan Produk Halal yang disusun Signature Halal"
+               width="520" height="529" loading="lazy" decoding="async">
+        </article>
+
+        <article class="bento-cell cell-7 cell-tint" data-reveal>
+          <div class="cell-body">
+            <h3>Konsultasi awal dan gap analysis</h3>
+            <p>Diskusi kebutuhan, pengecekan kelengkapan legalitas usaha, serta identifikasi bahan dan proses produksi sebelum pengajuan dimulai.</p>
+          </div>
+        </article>
+
+        <article class="bento-cell cell-7" data-reveal>
+          <div class="cell-body">
+            <h3>Pendaftaran ke BPJPH</h3>
+            <p>Pengajuan permohonan melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p>
+          </div>
+        </article>
+
+        <article class="bento-cell cell-7" data-reveal>
+          <div class="cell-body">
+            <h3>Pendampingan audit LPH</h3>
+            <p>Pendampingan audit lapangan di lokasi produksi serta tindak lanjut atas temuan hasil audit.</p>
+          </div>
+        </article>
+
+        <article class="bento-cell cell-5" data-reveal>
+          <div class="cell-body">
+            <h3>Pendampingan sidang fatwa MUI</h3>
+            <p>Pendampingan sampai penetapan status kehalalan produk melalui sidang komisi fatwa.</p>
+          </div>
+        </article>
+
+        <article class="bento-cell cell-12 cell-tint" data-reveal>
+          <div class="cell-body">
+            <h3>Konsultasi multi sektor</h3>
+            <p>Pangan, kosmetik, dan produk kimia, dengan penyesuaian untuk UMKM maupun industri skala besar.</p>
+          </div>
+        </article>
       </div>
     </div>
+  </section>
 
-    <div>
-      <div class="stat-panel">
-        <div class="stat-box" data-reveal><b data-count-to="8">8</b><span>Tahapan Pendampingan Terstruktur</span></div>
-        <div class="stat-box" data-reveal><b data-count-to="3">3</b><span>Sektor Utama: Pangan, Kosmetik, Kimia</span></div>
-        <div class="stat-box" data-reveal><b>Reguler</b><span>Skema Sertifikasi Halal BPJPH</span></div>
-        <div class="stat-box" data-reveal><b>SIHALAL</b><span>Pendaftaran Melalui Sistem Resmi</span></div>
+  <!-- Process: sticky aside plus numbered ledger -->
+  <section class="section" id="process">
+    <div class="shell process">
+      <div class="process-aside">
+        <h2 class="reveal-mask" data-reveal><span>Delapan tahap, tanpa kejutan.</span></h2>
+        <p data-reveal>Alur yang kami jalankan bersama klien, dari konsultasi awal sampai sertifikat halal dapat diunduh di SIHALAL.</p>
+        <p class="process-note" data-reveal>Seluruh tahapan mengikuti skema reguler BPJPH sesuai Undang Undang No. 33 Tahun 2014 tentang Jaminan Produk Halal.</p>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- Regulasi -->
-<section class="section" id="regulasi">
-  <div class="container">
-    <div class="section-head center" data-reveal>
-      <div class="eyebrow">Regulasi</div>
-      <h2>Produk yang Wajib Bersertifikat Halal</h2>
-      <p>Berdasarkan Undang-Undang No. 33 Tahun 2014 tentang Jaminan Produk Halal (UU JPH), berikut kategori produk yang wajib memiliki sertifikat halal.</p>
+      <ol class="process-list">
+        <li data-reveal><span class="step-num">01</span><div><h3>Konsultasi awal</h3><p>Diskusi kebutuhan, pengecekan legalitas usaha, dan identifikasi bahan serta proses produksi.</p></div></li>
+        <li data-reveal><span class="step-num">02</span><div><h3>Dokumen SJPH</h3><p>Penyusunan manual Sistem Jaminan Produk Halal, daftar bahan, dan diagram alir produksi.</p></div></li>
+        <li data-reveal><span class="step-num">03</span><div><h3>Pendaftaran BPJPH</h3><p>Pengajuan permohonan melalui sistem SIHALAL, termasuk pemilihan Lembaga Pemeriksa Halal.</p></div></li>
+        <li data-reveal><span class="step-num">04</span><div><h3>Verifikasi dokumen</h3><p>Pengecekan kelengkapan dan kesesuaian dokumen sebelum audit lapangan dijadwalkan.</p></div></li>
+        <li data-reveal><span class="step-num">05</span><div><h3>Audit lapangan</h3><p>Pemeriksaan langsung ke lokasi produksi, mencakup bahan, proses, alat, dan penyimpanan.</p></div></li>
+        <li data-reveal><span class="step-num">06</span><div><h3>Perbaikan temuan</h3><p>Tindak lanjut atas temuan audit, termasuk penyediaan bukti pendukung tambahan.</p></div></li>
+        <li data-reveal><span class="step-num">07</span><div><h3>Sidang fatwa MUI</h3><p>Penetapan status kehalalan produk melalui sidang komisi fatwa.</p></div></li>
+        <li data-reveal><span class="step-num">08</span><div><h3>Sertifikat terbit</h3><p>Sertifikat halal dapat diunduh melalui SIHALAL dan siap digunakan pada label produk.</p></div></li>
+      </ol>
     </div>
-    <div class="reg-grid">
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-utensils"></i></div><span>Makanan &amp; Minuman</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-pills"></i></div><span>Obat-obatan</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-pump-soap"></i></div><span>Kosmetik</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-flask"></i></div><span>Produk Kimiawi</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-dna"></i></div><span>Produk Biologi</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-magnifying-glass-chart"></i></div><span>Produk Rekayasa Genetik</span></div>
-      <div class="reg-chip" data-reveal><div class="ic"><i class="fa-solid fa-box-open"></i></div><span>Barang Gunaan (Kemasan, Alat Masak, dll.)</span></div>
-    </div>
-    <p class="reg-note" data-reveal>Signature Halal membantu Anda memahami kewajiban ini dan mendampingi proses sertifikasinya secara menyeluruh.</p>
-  </div>
-</section>
+  </section>
 
-<!-- CTA Banner -->
-<section class="section" style="padding-top:0;">
-  <div class="container">
-    <div class="cta-banner" data-reveal>
-      <div>
-        <h2>Siap Memulai Perjalanan Sertifikasi Halal Anda?</h2>
-        <p>Jadwalkan konsultasi gratis bersama tim ahli kami dan dapatkan roadmap sertifikasi yang sesuai kebutuhan bisnis Anda.</p>
+  <!-- Regulation: editorial callout plus category list -->
+  <section class="section section-alt" id="regulasi">
+    <div class="shell reg">
+      <div class="reg-head">
+        <p class="kicker" data-reveal>Regulasi</p>
+        <h2 class="reveal-mask" data-reveal><span>Produk yang wajib bersertifikat halal.</span></h2>
+        <p class="lead" data-reveal>Undang Undang No. 33 Tahun 2014 tentang Jaminan Produk Halal mewajibkan sertifikasi halal untuk kategori produk berikut.</p>
       </div>
-      <div class="cta-actions">
-        <a href="#contact" class="btn btn-gold">Konsultasi Sekarang</a>
-        <a href="tel:+6281343640048" class="btn btn-outline">Telepon Kami</a>
-      </div>
+
+      <ul class="reg-list">
+        <li data-reveal><span>Makanan dan minuman</span></li>
+        <li data-reveal><span>Obat obatan</span></li>
+        <li data-reveal><span>Kosmetik</span></li>
+        <li data-reveal><span>Produk kimiawi</span></li>
+        <li data-reveal><span>Produk biologi</span></li>
+        <li data-reveal><span>Produk rekayasa genetik</span></li>
+        <li data-reveal><span>Barang gunaan seperti kemasan dan alat masak</span></li>
+      </ul>
+
+      <p class="reg-note" data-reveal>Kami membantu Anda memahami kewajiban ini dan mendampingi proses sertifikasinya secara menyeluruh.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact -->
-<section class="section" id="contact">
-  <div class="container contact-grid">
-    <div data-reveal>
-      <div class="eyebrow">Hubungi Kami</div>
-      <h2>Konsultasikan Kebutuhan Halal Bisnis Anda</h2>
-      <p style="color:var(--cream-dim);margin-bottom:30px;">Kami siap membantu menjawab pertanyaan seputar sertifikasi halal skema reguler untuk usaha pangan, kosmetik, maupun produk kimia Anda.</p>
+  <!-- Closing statement band -->
+  <section class="section">
+    <div class="shell cta-inner" data-reveal>
+      <h2>Mulai dari percakapan, bukan dari dokumen.</h2>
+      <p>Ceritakan produk dan skala usaha Anda. Kami susunkan langkah sertifikasi yang realistis untuk dijalankan.</p>
+      <a href="#contact" class="btn btn-primary btn-lg">Konsultasi Gratis</a>
+      <p class="cta-sub">Atau hubungi langsung di <a href="tel:+6281343640048">0813-4364-0048</a></p>
+    </div>
+  </section>
 
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="shell contact">
       <div class="contact-info">
-        <div class="contact-item">
-          <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
-          <div><h4>Alamat Kantor</h4><p>Jl. Kramat Raya No. 164, RT.7/RW.2, Kenari, Kec. Senen, Jakarta Pusat, DKI Jakarta 10430</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="ic"><i class="fa-solid fa-phone"></i></div>
-          <div><h4>WhatsApp / Telepon</h4><p>0813-4364-0048</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="ic"><i class="fa-solid fa-envelope"></i></div>
-          <div><h4>Email</h4><p>signaturehalal@gmail.com</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="ic"><i class="fa-brands fa-instagram"></i></div>
-          <div><h4>Instagram</h4><p>@signaturehalal</p></div>
-        </div>
-        <div class="contact-item">
-          <div class="ic"><i class="fa-solid fa-globe"></i></div>
-          <div><h4>Website</h4><p>www.signaturehalal.id</p></div>
+        <h2 class="reveal-mask" data-reveal><span>Konsultasikan kebutuhan halal bisnis Anda.</span></h2>
+        <p class="lead" data-reveal>Kami siap menjawab pertanyaan seputar sertifikasi halal skema reguler untuk usaha pangan, kosmetik, maupun produk kimia Anda.</p>
+
+        <dl class="contact-list">
+          <div class="contact-row" data-reveal>
+            <dt>Alamat kantor</dt>
+            <dd>Jl. Kramat Raya No. 164, RT.7/RW.2, Kenari, Kec. Senen, Jakarta Pusat, DKI Jakarta 10430</dd>
+          </div>
+          <div class="contact-row" data-reveal>
+            <dt>WhatsApp dan telepon</dt>
+            <dd><a href="tel:+6281343640048">0813-4364-0048</a></dd>
+          </div>
+          <div class="contact-row" data-reveal>
+            <dt>Email</dt>
+            <dd><a href="mailto:admin@signaturehalal.id">admin@signaturehalal.id</a></dd>
+          </div>
+          <div class="contact-row" data-reveal>
+            <dt>Instagram</dt>
+            <dd><a href="https://instagram.com/signaturehalal" target="_blank" rel="noopener">@signaturehalal</a></dd>
+          </div>
+        </dl>
+
+        <div class="contact-map" data-reveal>
+          <iframe
+            src="https://www.google.com/maps?q=Jl.+Kramat+Raya+No.+164,+Kenari,+Kec.+Senen,+Jakarta+Pusat,+DKI+Jakarta+10430&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Peta lokasi kantor Signature Halal"></iframe>
         </div>
       </div>
 
-      <div class="contact-map">
-        <iframe
-          src="https://www.google.com/maps?q=Jl.+Kramat+Raya+No.+164,+Kenari,+Kec.+Senen,+Jakarta+Pusat,+DKI+Jakarta+10430&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Lokasi Kantor Signature Halal"></iframe>
-      </div>
-    </div>
-
-    <div data-reveal>
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form" id="contact-form" novalidate data-reveal>
         <div class="form-row">
           <div class="field">
-            <label for="name">Nama Lengkap</label>
-            <input type="text" id="name" name="name" placeholder="Nama Anda" required>
+            <label for="name">Nama lengkap</label>
+            <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error">
+            <p class="field-error" id="name-error" hidden>Mohon isi nama lengkap Anda.</p>
           </div>
           <div class="field">
-            <label for="company">Nama Perusahaan</label>
-            <input type="text" id="company" name="company" placeholder="PT / CV Anda">
+            <label for="company">Nama perusahaan</label>
+            <input type="text" id="company" name="company" autocomplete="organization">
+            <p class="field-hint">Opsional, isi bila usaha Anda sudah berbadan hukum.</p>
           </div>
         </div>
+
         <div class="form-row">
           <div class="field">
-            <label for="phone">No. HP / WhatsApp</label>
-            <input type="tel" id="phone" name="phone" placeholder="08xx-xxxx-xxxx" required>
+            <label for="phone">No. HP atau WhatsApp</label>
+            <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" required aria-describedby="phone-error">
+            <p class="field-error" id="phone-error" hidden>Mohon isi nomor yang bisa kami hubungi.</p>
           </div>
           <div class="field">
-            <label for="service">Layanan yang Dibutuhkan</label>
-            <select id="service" name="service">
-              <option>Sertifikasi Halal Produk Pangan</option>
-              <option>Sertifikasi Halal Kosmetik</option>
-              <option>Sertifikasi Halal Produk Kimia</option>
-              <option>Penyusunan Dokumen SJPH</option>
-              <option>Konsultasi Umum</option>
-              <option>Lainnya</option>
+            <label for="product">Jenis produk</label>
+            <select id="product" name="product" required aria-describedby="product-error">
+              <option value="" disabled selected>Pilih jenis produk</option>
+              <optgroup label="Pangan">
+                <option>Makanan dan minuman</option>
+                <option>Bahan baku dan bahan tambahan pangan</option>
+                <option>Restoran, katering, atau dapur produksi</option>
+                <option>Jasa sembelih, RPH atau RPU</option>
+              </optgroup>
+              <optgroup label="Non pangan">
+                <option>Kosmetik</option>
+                <option>Produk kimia</option>
+                <option>Barang gunaan</option>
+              </optgroup>
+              <option>Belum yakin, mohon dibantu</option>
             </select>
+            <p class="field-error" id="product-error" hidden>Mohon pilih jenis produk Anda.</p>
           </div>
         </div>
+
         <div class="field">
           <label for="message">Pesan</label>
-          <textarea id="message" name="message" placeholder="Ceritakan kebutuhan sertifikasi halal Anda..."></textarea>
+          <textarea id="message" name="message" rows="4"></textarea>
+          <p class="field-hint">Ceritakan produk, bahan utama, dan skala produksi Anda.</p>
         </div>
-        <button type="submit" class="btn btn-gold btn-block">Kirim via WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
-        <p class="form-note">Kami akan merespons dalam 1x24 jam pada hari kerja.</p>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="form-submit">Kirim via WhatsApp</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">Kami merespons dalam 1x24 jam pada hari kerja.</p>
       </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
+</main>
+
 <footer class="footer">
-  <div class="container">
+  <div class="shell">
     <div class="footer-grid">
-      <div>
-        <div class="footer-brand">
-          <img src="assets/logo-horizontal.png" alt="Signature Halal">
-        </div>
-        <p class="desc">Sentuhan personal kami, untuk kepercayaan kehalalan Anda. Konsultan pendamping sertifikasi halal BPJPH skema reguler.</p>
+      <div class="footer-brand">
+        <span class="footer-lockup">
+          <img class="brand-mark-static" src="assets/logo-mark.webp" alt="" width="115" height="200" loading="lazy">
+          <img class="brand-word" src="assets/logo-wordmark.webp" alt="Signature Halal" width="260" height="163" loading="lazy">
+        </span>
+        <p>Sentuhan personal kami, untuk kepercayaan kehalalan Anda.</p>
         <div class="footer-socials">
-          <a href="https://instagram.com/signaturehalal" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://wa.me/6281343640048" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://instagram.com/signaturehalal" target="_blank" rel="noopener" aria-label="Instagram Signature Halal"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"></use></svg></a>
+          <a href="https://wa.me/6281343640048" target="_blank" rel="noopener" aria-label="WhatsApp Signature Halal"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg></a>
         </div>
       </div>
 
-      <div>
-        <h5>Navigasi</h5>
+      <nav class="footer-col" aria-label="Navigasi footer">
+        <h3>Navigasi</h3>
         <ul>
           <li><a href="#home">Beranda</a></li>
           <li><a href="#about">Tentang Kami</a></li>
           <li><a href="#services">Layanan</a></li>
           <li><a href="#process">Proses</a></li>
+          <li><a href="#regulasi">Regulasi</a></li>
           <li><a href="#contact">Kontak</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div>
-        <h5>Layanan</h5>
+      <div class="footer-col">
+        <h3>Layanan</h3>
         <ul>
-          <li><a href="#services">Sertifikasi Halal Pangan</a></li>
-          <li><a href="#services">Sertifikasi Halal Kosmetik</a></li>
-          <li><a href="#services">Sertifikasi Halal Produk Kimia</a></li>
-          <li><a href="#services">Penyusunan Dokumen SJPH</a></li>
+          <li><a href="#services">Sertifikasi halal pangan</a></li>
+          <li><a href="#services">Sertifikasi halal kosmetik</a></li>
+          <li><a href="#services">Sertifikasi halal produk kimia</a></li>
+          <li><a href="#services">Penyusunan dokumen SJPH</a></li>
         </ul>
       </div>
 
-      <div>
-        <h5>Kontak</h5>
+      <div class="footer-col">
+        <h3>Kontak</h3>
         <ul>
-          <li><i class="fa-solid fa-location-dot"></i> Jl. Kramat Raya No. 164, Jakarta Pusat 10430</li>
-          <li><i class="fa-solid fa-phone"></i> 0813-4364-0048</li>
-          <li><i class="fa-solid fa-envelope"></i> signaturehalal@gmail.com</li>
-          <li><i class="fa-solid fa-globe"></i> www.signaturehalal.id</li>
+          <li>Jl. Kramat Raya No. 164, Jakarta Pusat 10430</li>
+          <li><a href="tel:+6281343640048">0813-4364-0048</a></li>
+          <li><a href="mailto:admin@signaturehalal.id">admin@signaturehalal.id</a></li>
+          <li>www.signaturehalal.id</li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 Signature Halal. Seluruh hak cipta dilindungi.</span>
-      <span>Konsultan Pendamping Sertifikasi Halal</span>
+      <span>&copy; 2026 Signature Halal. Seluruh hak cipta dilindungi.</span>
+      <span>Konsultan pendamping sertifikasi halal</span>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/6281343640048" class="wa-float" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-<button class="back-top" aria-label="Kembali ke atas"><i class="fa-solid fa-arrow-up"></i></button>
+<a href="https://wa.me/6281343640048" class="wa-float" target="_blank" rel="noopener" aria-label="Hubungi kami via WhatsApp">
+  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg>
+</a>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=12"></script>
 </body>
 </html>

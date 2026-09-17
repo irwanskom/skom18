@@ -1,0 +1,51 @@
+name: CI
+
+# Situs ini statis tanpa build step, jadi CI menjaga hal yang justru mudah
+# lolos dari mata: HTML yang tidak valid, aset atau anchor yang putus,
+# regresi aksesibilitas, dan penurunan skor Lighthouse.
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Validasi, aksesibilitas, dan audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Pasang dependensi
+        run: npm ci
+
+      - name: Pasang Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Tentukan path Chromium
+        run: |
+          echo "CHROMIUM_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+
+      # Rule tel-non-breaking dimatikan di .htmlvalidate.json: nomor telepon
+      # sengaja dibiarkan ASCII supaya bisa disalin pengguna ke dialer atau
+      # WhatsApp, dan dijaga agar tidak terpotong lewat CSS white-space.
+      - name: Validasi HTML
+        run: npm run check:html
+
+      - name: Aset, anchor, dan pagar desain
+        run: npm run check:static
+
+      - name: Audit aksesibilitas
+        run: npm run check:a11y
+
+      - name: Audit Lighthouse
+        run: npm run check:lighthouse

@@ -1,0 +1,18 @@
+{
+  "name": "signaturehalal-web",
+  "private": true,
+  "description": "Situs Signature Halal, konsultan pendamping sertifikasi halal.",
+  "scripts": {
+    "check": "npm run check:html && npm run check:static && npm run check:a11y",
+    "check:html": "html-validate index.html",
+    "check:static": "node scripts/check-static.mjs",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check:lighthouse": "node scripts/check-lighthouse.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.1",
+    "html-validate": "9.5.3",
+    "lighthouse": "12.8.2",
+    "playwright": "1.49.0"
+  }
+}
