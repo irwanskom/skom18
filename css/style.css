@@ -55,7 +55,7 @@
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --step-h1: clamp(1.85rem, 1.2rem + 1.7vw, 2.75rem);
+  --step-h1: clamp(1.85rem, 1.2rem + 1.7vw, 2.65rem);
   --step-h2: clamp(1.65rem, 1.15rem + 1.9vw, 2.35rem);
   --step-h3: clamp(1.0625rem, 0.98rem + 0.4vw, 1.25rem);
   --step-lead: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
@@ -364,14 +364,22 @@ a[href^="tel:"] { white-space: nowrap; }
 
 /* --------------------------------------------------------------- Hero -- */
 
-.hero { padding-block: clamp(48px, 6vw, 88px) clamp(56px, 7vw, 96px); }
+/* Tanpa padding bawah supaya subjek potongan berdiri tepat di garis
+   pemisah seksi. Tepi bawah foto jadi terbaca disengaja, bukan terpotong. */
+.hero {
+  padding-block: clamp(48px, 6vw, 88px) 0;
+  overflow: hidden;
+}
 
 .hero-inner {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(40px, 6vw, 80px);
-  align-items: center;
+  align-items: end;
 }
+
+.hero-copy { padding-bottom: clamp(64px, 8vw, 104px); }
+.hero-figure { align-self: end; }
 
 .hero-copy h1 { margin-bottom: 20px; }
 .hero-copy .lead { max-width: 46ch; }
@@ -383,19 +391,34 @@ a[href^="tel:"] { white-space: nowrap; }
   margin-top: 32px;
 }
 
+/* Foto hero adalah potongan berlatar transparan, jadi tidak dibingkai.
+   Subjek berdiri langsung di atas halaman, dengan sorot hijau lembut di
+   belakangnya supaya tidak terbaca mengambang. */
 .hero-figure {
   margin: 0;
-  border-radius: var(--r-3);
-  overflow: hidden;
-  background: var(--surface);
-  box-shadow: var(--shadow-md);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.hero-figure::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 92%;
+  aspect-ratio: 1 / 0.82;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, var(--accent-tint), transparent 78%);
+  z-index: 0;
 }
 .hero-figure img {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  aspect-ratio: 4 / 4.2;
-  object-fit: cover;
-  object-position: center 18%;
   max-height: 62vh;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
 /* ---------------------------------------------------- Sector band -- */
@@ -913,17 +936,15 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
 
-/* Foto masuk dengan skala menyusut halus, bukan sekadar naik, supaya
-   terasa mendarat di tempatnya. */
-.hero-figure,
+/* Foto berbingkai masuk dengan skala menyusut halus supaya terasa
+   mendarat di tempatnya. Foto hero dikecualikan karena potongan
+   transparan tanpa bingkai akan terpotong kalau dipangkas. */
 .about-figure { overflow: hidden; }
-.hero-figure img,
 .about-figure img {
   transform: scale(1.06);
   transition: transform 1.2s var(--ease);
 }
-.about-figure.is-in img,
-body.is-ready .hero-figure img { transform: scale(1); }
+.about-figure.is-in img { transform: scale(1); }
 
 /* Koreografi masuk hero, dijalankan saat halaman siap dan bukan saat
    scroll, karena hero sudah terlihat sejak awal. Hero tidak memakai
@@ -959,10 +980,12 @@ body.is-ready .hero-figure { animation: heroIn 0.9s var(--ease) 0.12s both; }
 @media (max-width: 900px) {
   .nav-links, .nav-cta { display: none; }
   .nav-toggle { display: flex; }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-copy { max-width: 100%; }
-  .hero-figure { order: -1; }
-  .hero-figure img { max-height: 46vh; aspect-ratio: 3 / 2.4; object-position: center 12%; }
+  /* Satu kolom: foto di bawah teks supaya tetap berdiri di garis seksi. */
+  .hero { padding-bottom: 0; }
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .hero-copy { max-width: 100%; padding-bottom: 0; }
+  .hero-figure { order: 0; }
+  .hero-figure img { max-height: 42vh; }
   .contact { grid-template-columns: 1fr; }
   .contact-row { grid-template-columns: 1fr; gap: 4px; }
 }
