@@ -67,7 +67,7 @@
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --step-h1: clamp(2.6rem, 1.6rem + 3.1vw, 4.6rem);
+  --step-h1: clamp(2.5rem, 1.7rem + 2.5vw, 4rem);
   --step-h2: clamp(2rem, 1.4rem + 2.1vw, 3.1rem);
   --step-h3: clamp(1.0625rem, 0.98rem + 0.4vw, 1.25rem);
   --step-lead: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
@@ -269,10 +269,10 @@ a[href^="tel:"] { white-space: nowrap; }
   gap: 11px;
 }
 .brand-mark,
-.brand-mark-static { height: 40px; width: auto; flex: none; }
-.brand-word { height: 25px; width: auto; }
-.footer-lockup .brand-mark-static { height: 42px; }
-.footer-lockup .brand-word { height: 26px; }
+.brand-mark-static,
+.brand-word { height: 48px; width: auto; flex: none; }
+.footer-lockup .brand-mark-static,
+.footer-lockup .brand-word { height: 50px; }
 
 .nav-links {
   display: flex;
@@ -352,7 +352,7 @@ a[href^="tel:"] { white-space: nowrap; }
 /* Cahaya hangat yang sangat halus di belakang subjek, bukan glow neon. */
 .hero {
   position: relative;
-  padding-block: clamp(56px, 6vw, 92px) 0;
+  padding-block: clamp(40px, 4vw, 68px) 0;
   overflow: hidden;
   background:
     radial-gradient(68% 52% at 74% 16%, rgba(201, 162, 39, 0.09), transparent 64%),
@@ -361,12 +361,12 @@ a[href^="tel:"] { white-space: nowrap; }
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(40px, 5vw, 64px);
+  grid-template-columns: 0.98fr 1.02fr;
+  gap: clamp(32px, 4vw, 56px);
   align-items: end;
 }
 
-.hero-copy { padding-bottom: clamp(72px, 8vw, 112px); }
+.hero-copy { padding-bottom: clamp(48px, 5vw, 76px); }
 .hero-copy .kicker { margin-bottom: 30px; }
 .hero-copy h1 { margin-bottom: 26px; }
 .hero-copy .lead { max-width: 46ch; }
@@ -378,12 +378,17 @@ a[href^="tel:"] { white-space: nowrap; }
   margin-top: 38px;
 }
 
+/* Foto meluber ke tepi halaman sejauh ruang sisa yang benar benar ada,
+   jadi subjeknya tampil lebih besar tanpa mempersempit kolom teks. Nilainya
+   nol ketika layar lebih sempit dari shell, sehingga tidak pernah terpotong. */
 .hero-figure {
-  margin: 0;
+  --bleed: clamp(0px, calc((100vw - var(--shell)) / 2 + 24px), 104px);
+  margin: 0 calc(-1 * var(--bleed)) 0 0;
+  width: calc(100% + var(--bleed));
   position: relative;
   align-self: end;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
 }
 .hero-figure::before {
@@ -966,8 +971,8 @@ body.is-ready .nav-brand .brand-word { animation: wordIn 0.7s var(--ease) 0.5s b
 .brand-mark,
 .brand-mark-static,
 .brand-word { transition: height 0.3s var(--ease); }
-.nav.is-stuck .brand-mark { height: 34px; }
-.nav.is-stuck .brand-word { height: 21px; }
+.nav.is-stuck .brand-mark,
+.nav.is-stuck .brand-word { height: 38px; }
 
 /* Judul serif tersingkap dari balik topeng, bukan sekadar memudar.
    Yang bergerak adalah isi di dalam pembungkus, bukan elemen judulnya.
