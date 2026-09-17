@@ -814,7 +814,11 @@ a[href^="tel:"] { white-space: nowrap; }
 
 .field-hint { font-size: 0.8125rem; color: var(--cream-3); }
 .field-error { font-size: 0.8125rem; color: var(--danger); font-weight: 600; }
-.field[data-invalid] input { border-color: var(--danger); }
+.field[data-invalid] :is(input, select) { border-color: var(--danger); }
+
+/* Select yang belum dipilih tampil redup, sehingga teks ajakan tidak terbaca
+   sebagai pilihan yang sudah dibuat pengunjung. */
+.field select:invalid { color: var(--cream-3); }
 
 .form-status {
   margin-top: 14px;

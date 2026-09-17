@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.setAttribute('aria-invalid', String(show));
   };
 
-  form.querySelectorAll('input[required]').forEach((input) => {
+  form.querySelectorAll('input[required], select[required]').forEach((input) => {
     input.addEventListener('input', () => {
       if (input.value.trim()) setFieldError(input, false);
     });
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const required = [...form.querySelectorAll('input[required]')];
+    const required = [...form.querySelectorAll('input[required], select[required]')];
     let firstInvalid = null;
 
     required.forEach((input) => {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Nama: ' + value('name'),
       'Perusahaan: ' + (value('company') || '-'),
       'No. HP: ' + value('phone'),
-      'Layanan: ' + value('service'),
+      'Jenis produk: ' + value('product'),
       'Pesan: ' + (value('message') || '-')
     ];
 

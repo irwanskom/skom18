@@ -30,7 +30,7 @@
 <!-- Nomor ?v= dinaikkan setiap kali CSS atau JS berubah. Nama berkasnya
      tetap, jadi tanpa ini browser pengunjung lama akan terus memakai
      salinan cache versi sebelumnya setelah unggah ulang. -->
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=12">
 
 <script>
   // Penanda js dipakai CSS untuk menyembunyikan elemen yang akan dianimasikan.
@@ -349,15 +349,23 @@
             <p class="field-error" id="phone-error" hidden>Mohon isi nomor yang bisa kami hubungi.</p>
           </div>
           <div class="field">
-            <label for="service">Layanan yang dibutuhkan</label>
-            <select id="service" name="service">
-              <option>Sertifikasi halal pangan</option>
-              <option>Sertifikasi halal kosmetik</option>
-              <option>Sertifikasi halal produk kimia</option>
-              <option>Penyusunan dokumen SJPH</option>
-              <option>Konsultasi umum</option>
-              <option>Lainnya</option>
+            <label for="product">Jenis produk</label>
+            <select id="product" name="product" required aria-describedby="product-error">
+              <option value="" disabled selected>Pilih jenis produk</option>
+              <optgroup label="Pangan">
+                <option>Makanan dan minuman</option>
+                <option>Bahan baku dan bahan tambahan pangan</option>
+                <option>Restoran, katering, atau dapur produksi</option>
+                <option>Jasa sembelih, RPH atau RPU</option>
+              </optgroup>
+              <optgroup label="Non pangan">
+                <option>Kosmetik</option>
+                <option>Produk kimia</option>
+                <option>Barang gunaan</option>
+              </optgroup>
+              <option>Belum yakin, mohon dibantu</option>
             </select>
+            <p class="field-error" id="product-error" hidden>Mohon pilih jenis produk Anda.</p>
           </div>
         </div>
 
@@ -435,6 +443,6 @@
   <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg>
 </a>
 
-<script src="js/main.js?v=11"></script>
+<script src="js/main.js?v=12"></script>
 </body>
 </html>
