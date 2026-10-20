@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lokasi kantor — Signature Halal</title>
+<!-- Embedded in the contact section; not a page in its own right. -->
+<meta name="robots" content="noindex">
+<style>
+html,body{margin:0;height:100%;background:#1a1815;font-family:'Poppins',system-ui,sans-serif}
+#map{height:100%;width:100%}
+.leaflet-container{background:#121110}
+/* Darken the raster tiles to sit on the near-black page; markers and popups
+   live in separate panes, so they keep their own colours. */
+.leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9) saturate(.65)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#1a1815;color:#f5f1e8}
+.leaflet-popup-content{font:400 12.5px/1.5 'Poppins',system-ui,sans-serif;color:#f5f1e8;margin:12px 14px}
+.leaflet-popup-content b{font-weight:600;color:#d9b877}
+.leaflet-control-attribution{font-size:9px;background:rgba(10,9,8,.7);color:#8f8779}
+.leaflet-control-attribution a{color:#b6ad9e}
+.leaflet-bar a{background:#1a1815;color:#f5f1e8;border-bottom-color:rgba(245,241,232,.18)}
+.leaflet-bar a:hover{background:#242019;color:#d9b877}
+#fallback{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px 22px;box-sizing:border-box;text-align:center}
+#fallback p{font:400 12px/1.6 'Poppins',system-ui,sans-serif;color:#8f8779;margin:0;max-width:24em}
+#fallback a{font:600 12.5px/1 'Poppins',system-ui,sans-serif;color:#f5f1e8;border:1px solid rgba(245,241,232,.18);border-radius:2px;padding:11px 16px;text-decoration:none}
+#fallback a:hover{color:#d9b877;border-color:#d9b877}
+</style>
+</head>
+<body>
+<div id="map" hidden></div>
+<div id="fallback">
+  <p>Peta interaktif tidak dapat dimuat.</p>
+  <a href="https://www.google.com/maps/search/?api=1&amp;query=Gedung+Jaya+Jl.+M.H.+Thamrin+No.12+Menteng+Jakarta+Pusat" target="_blank" rel="noopener">Lihat lokasi di Google Maps</a>
+</div>
+<script>
+(function () {
+  // Prefer the vendored copy (see assets/vendor/leaflet/README.md); fall back to
+  // the CDN while it is absent. If neither loads, the address block stays put so
+  // the embed never renders as an empty box.
+  var LOCAL = 'assets/vendor/leaflet/';
+  var CDN = 'https://unpkg.com/leaflet@1.9.4/dist/';
+  var SRI_CSS = 'sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H';
+  var SRI_JS = 'sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH';
+
+  function loadCss(href, integrity, onerror) {
+    var el = document.createElement('link');
+    el.rel = 'stylesheet';
+    el.href = href;
+    if (integrity) { el.integrity = integrity; el.crossOrigin = 'anonymous'; }
+    el.onerror = onerror || null;
+    document.head.appendChild(el);
+  }
+
+  function loadJs(src, integrity, onload, onerror) {
+    var el = document.createElement('script');
+    el.src = src;
+    if (integrity) { el.integrity = integrity; el.crossOrigin = 'anonymous'; }
+    el.onload = onload;
+    el.onerror = onerror;
+    document.head.appendChild(el);
+  }
+
+  // Returns false when the script resolved to something that is not Leaflet —
+  // a host that answers missing files with a 200 page would land here.
+  function initMap() {
+    if (typeof L === 'undefined') return false;
+
+    document.getElementById('fallback').hidden = true;
+    document.getElementById('map').hidden = false;
+
+    var office = [-6.18690, 106.82320];
+    var map = L.map('map', { scrollWheelZoom: false }).setView(office, 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.circleMarker(office, {
+      radius: 9, color: '#d9b877', weight: 3, fillColor: '#c9a05a', fillOpacity: 0.85
+    }).addTo(map).bindPopup(
+      '<b>PT Signature Halal Indonesia</b><br>Gedung Jaya, Jl. M.H. Thamrin No.12<br>Kb. Sirih, Menteng, Jakarta Pusat'
+    ).openPopup();
+    return true;
+  }
+
+  function cdnCss() { loadCss(CDN + 'leaflet.css', SRI_CSS); }
+  function cdnJs() { loadJs(CDN + 'leaflet.js', SRI_JS, initMap, null); }
+
+  // The two resolve independently, so a half-populated vendor directory still
+  // pairs a local file with its CDN counterpart at the same version.
+  loadCss(LOCAL + 'leaflet.css', null, cdnCss);
+  loadJs(LOCAL + 'leaflet.js', null, function () { if (!initMap()) cdnJs(); }, cdnJs);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Agent skills installed via `npx skills add` — tooling, not part of the site
+.agents/
+.claude/skills/
+skills-lock.json
